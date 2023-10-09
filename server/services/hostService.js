@@ -1,36 +1,36 @@
 const HostRepo = require("../repositories/hostRepo");
+const repo = new HostRepo()
 
 module.exports = class HostService {
-    repo = new HostRepo()
 
     async getAll() {
-        return await this.repo.getAll();
+        return await repo.getAll();
     }
 
     async getById(id) {
-        return this.repo.getById(id)
+        return repo.getById(id)
     }
 
     async insert(data) {
-        const validBody = this.valid_model(data);
+        const validBody = valid_model(data);
         if (validBody.error) {
             return validBody;
         } else {
-            return await this.repo.insert(data);
+            return await repo.insert(data);
         }
     }
 
     async update(id, data) {
-        let validBody = this.valid_model(data);
+        let validBody = valid_model(data);
         if (validBody.error) {
             return validBody;
         } else {
-            return await this.repo.update(id,data);
+            return await repo.update(id,data);
         }
     }
 
     async delete(id) {
-        return await this.repo.delete(id);
+        return await repo.delete(id);
     }
 
 }

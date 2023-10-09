@@ -1,6 +1,7 @@
 const express = require('express');
 require('dotenv').config();
-const hostService = require('../services/hostService');
+const HostService = require('../services/hostService');
+const hostService = new HostService()
 const logger = require('../middlewares/logger');
 const errorMW = require('../middlewares/errors');
 
@@ -29,6 +30,7 @@ app.put(`/:id`, async (req, res, next) => {
 app.delete(`/:id`, async (req, res) =>{
     res.send(await hostService.delete(req.params.id));
 });
+
 app.use(logger());
 
 app.post('/', async (req, res, next) => {

@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
-const { connect } = require("../models/mongoConnect");
+const { connect } = require("../models/mongoConnection");
 const {HostModel} = require("../models/hostModel")
 
 module.exports = class HostRepo {
+    constructor() {
+        connect();
+    }
+
         async getAll() {
         let items = await HostModel.find({});
         return items;
