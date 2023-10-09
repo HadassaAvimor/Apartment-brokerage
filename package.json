@@ -1,0 +1,22 @@
+{
+  "name": "apartment-brokerage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HadassaAvimor/Apartment-brokerage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HadassaAvimor/Apartment-brokerage/issues"
+  },
+  "homepage": "https://github.com/HadassaAvimor/Apartment-brokerage#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
