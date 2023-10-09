@@ -17,7 +17,7 @@ const hostSchema = new mongoose.Schema({
     whatsapp:Boolean,
     email:String
     
-}, {collection: "Host"});
+}, {collection: "host"});
 
 const HostModel = mongoose.model("host", hostSchema);
 

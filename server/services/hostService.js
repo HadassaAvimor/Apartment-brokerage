@@ -1,3 +1,7 @@
+const myModule = require("../models/hostModel");
+const validHost = myModule.validHost;
+const HostModel = myModule.HostModel;
+
 const HostRepo = require("../repositories/hostRepo");
 const repo = new HostRepo()
 
@@ -12,7 +16,7 @@ module.exports = class HostService {
     }
 
     async insert(data) {
-        const validBody = valid_model(data);
+        const validBody = validHost(data);
         if (validBody.error) {
             return validBody;
         } else {
@@ -21,7 +25,7 @@ module.exports = class HostService {
     }
 
     async update(id, data) {
-        let validBody = valid_model(data);
+        let validBody = validHost(data);
         if (validBody.error) {
             return validBody;
         } else {
