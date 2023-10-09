@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 // import { useDispatch, useSelector } from "react-redux";
-
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const schema = yup.object().shape({
     id: yup.string(),
@@ -19,7 +19,7 @@ const schema = yup.object().shape({
     isAccessible: yup.bool(),
     payment: yup.bool().required("נא לסמן"),
     notes: yup.string(),
-    phone: yup.string().required(),
+    phone: yup.string().required().matches(phoneRegExp, 'Phone number is not valid'),
     whatsapp: yup.bool().required("נא לסמן"),
     email: yup.string(),
 });
@@ -41,7 +41,7 @@ function Host() {
                                 type="text"
                                 name="name"
                                 {...register('name')}
-                                // defaultValue={apartment.name}
+                            // defaultValue={apartment.name}
                             />
                             <small className="text-danger">
                                 {errors?.name && errors.name.message}
@@ -53,7 +53,7 @@ function Host() {
                                 type="text"
                                 name="city"
                                 {...register('city')}
-                                // defaultValue={apartment.city}
+                            // defaultValue={apartment.city}
                             />
                             <small className="text-danger">
                                 {errors?.city && errors.city.message}
@@ -63,11 +63,11 @@ function Host() {
                             <label className="form-label" for="form3Example1m">האם היחידה</label>
                             <input type="radio" value="Yes" name="accommodationUnit"
                                 {...register('accommodationUnit')}
-                                // defaultValue={apartment.accommodationUnit}
+                            // defaultValue={apartment.accommodationUnit}
                             />
                             <input type="radio" value="No" name="accommodationUnit"
                                 {...register('accommodationUnit')}
-                                // defaultValue={apartment.accommodationUnit}
+                            // defaultValue={apartment.accommodationUnit}
                             />
                             <small className="text-danger">
                                 {errors?.accommodationUnit && errors.accommodationUnit.message}
@@ -77,11 +77,11 @@ function Host() {
                             <label className="form-label" for="form3Example1m">האם יש מרחב מוגן?</label>
                             <input type="radio" value="Yes" name="hasMMD"
                                 {...register('hasMMD')}
-                                // defaultValue={apartment.accommodationUnit}
+                            // defaultValue={apartment.accommodationUnit}
                             />
                             <input type="radio" value="No" name="hasMMD"
                                 {...register('hasMMD')}
-                                // defaultValue={apartment.accommodationUnit}
+                            // defaultValue={apartment.accommodationUnit}
                             />
                             <small className="text-danger">
                                 {errors?.hasMMD && errors.hasMMD.message}
@@ -93,18 +93,99 @@ function Host() {
                                 type="number"
                                 name="numOfBeds"
                                 {...register('numOfBeds')}
-                                // defaultValue={apartment.nunumOfBeds}
+                            // defaultValue={apartment.nunumOfBeds}
                             />
                             <small className="text-danger">
                                 {errors?.numOfBeds && errors.numOfBeds.message}
                             </small>
                         </div>
-                        
+                        <div className="form-outline mb-4">
+                            <label className="form-label" for="form3Example1m">האם בתשלום</label>
+                            <br></br>
+                            <label className="form-label" for="form3Example1m">כן</label>
+
+                            <input type="radio" value="Yes" name="payment"
+                                {...register('payment')}
+                            />
+                            <br></br>
+                            <label className="form-label" for="form3Example1m">לא</label>
+                            <input type="radio" value="No" name="payment"
+                                {...register('payment')}
+                            />
+                            <br></br>
+                            <small className="text-danger">
+                                {errors?.payment && errors.payment.message}
+                            </small>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <label className="form-label" for="form3Example1m">הערות</label>
+                            <textarea
+                                id="form3Example1m"
+                                className="form-control"
+                                name="notes"
+                                {...register('notes')}
+                            />
+                            <small className="text-danger">
+                                {errors?.notes && errors.notes.message}
+                            </small>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <label className="form-label" for="form3Example1m">מספר טלפון</label>
+                            <input
+                                id="form3Example1m"
+                                className="form-control"
+                                type="text"
+                                name="phone"
+                                maxLength="10"
+                                {...register('phone')}
+                            />
+                            <small className="text-danger">
+                                {errors?.phone && errors.phone.message}
+                            </small>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <label className="form-label" for="form3Example1m">האם יש ווצאפ?</label>
+                            <br></br>
+                            <label className="form-label" for="form3Example1m">כן</label>
+
+                            <input type="radio" value="Yes" name="whatsapp"
+                                {...register('whatsapp')}
+                            />
+                            <br></br>
+                            <label className="form-label" for="form3Example1m">לא</label>
+                            <input type="radio" value="No" name="whatsapp"
+                                {...register('whatsapp')}
+                            />
+                            <br></br>
+                            <small className="text-danger">
+                                {errors?.whatsapp && errors.payment.whatsapp}
+                            </small>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <label className="form-label" for="form3Example1m">דואר אלקטרוני</label>
+                            <input
+                                id="form3Example1m"
+                                className="form-control"
+                                type="email"
+                                name="email"
+                                pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+"
+                                maxLength="255"
+                                {...register('email')}
+                            />
+                            <small className="text-danger">
+                                {errors?.email && errors.email.message}
+                            </small>
+                        </div>
+
+
+
+
+
                         <button className="btn btn-dark btn-lg btn-block">עדכון</button>
                     </form>
                 </div>
             </div>
         </div>
-        </>);
+    </>);
 }
 export default Host
