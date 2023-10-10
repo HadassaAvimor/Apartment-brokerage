@@ -1,9 +1,14 @@
 import * as yup from "yup";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Header } from "../Header";
 import { getToken } from "../loginWithAuth/TokenService";
+import { MDBContainer } from "mdb-react-ui-kit"; 
+import { useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import { Header } from "../Header";
+import "./Host.css"
 
 // import { useDispatch, useSelector } from "react-redux";
 
@@ -49,16 +54,20 @@ function Host() {
                 if (response.status >= 200 && response.status < 300) {
                     console.log(response.data);
                 }
-                console.log("Post");
 
             })
             .catch(error => {
                 console.log(error);
-            });
+            });git 
     }
 
     return (
         <>
+            <div class="wrap">
+            <header>
+                <Header></Header>
+            </header>
+
             <div dir="rtl">
                 <div class="row g-0">
                     <div class="card-body p-md-5 text-black">
@@ -293,7 +302,7 @@ function Host() {
                         </form>
                     </div>
                 </div >
-            </div >
+            </div ></div>
         </>);
 }
 export default Host
