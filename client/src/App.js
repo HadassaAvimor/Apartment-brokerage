@@ -8,6 +8,7 @@ import Host from './host/Host';
 import Guest from './GuestComponents/Guest';
 import Login from './loginWithAuth/Login';
 import { Header } from './Header';
+import Update from './host/update';
 
 function App() {
   return (
