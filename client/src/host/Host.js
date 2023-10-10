@@ -1,35 +1,56 @@
 import * as yup from "yup";
-
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Header } from "../Header";
 
 // import { useDispatch, useSelector } from "react-redux";
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
-const schema = yup.object().shape({
-    id: yup.string(),
-    name: yup.string().required("נא להכניס ערך"),
-    city: yup.string().required("נא להכניס ערך"),
-    accommodationUnit: yup.bool().required("נא לסמן"),
-    hasMMD: yup.bool().required("נא לסמן אם קיים מרחב מוגן"),
-    numOfBeds: yup.number().required("נא להכניס כמה מיטות יש לכם"),
-    numOfMattresses: yup.number().required("נא להכניס כמה מזרונים יש(ניתן להכניס 0)"),
-    numOfCribs: yup.number().required("נא להכניס ערך(ניתן להכניס 0)"),
-    currentlyAvailable: yup.bool().required("נא לסמן"),
-    isAccessible: yup.bool(),
-    payment: yup.bool().required("נא לסמן"),
-    notes: yup.string(),
-    phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-    whatsapp: yup.bool().required("נא לסמן"),
-    email: yup.string(),
-});
 
 function Host() {
+    const baseUrl = process.env.REACT_APP_API_URL;
+    const hostUrl = `http://localhost:3001`;//`${baseUrl}/hosts`
+    
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+    const schema = yup.object().shape({
+        id: yup.string(),
+        name: yup.string().required("נא להכניס ערך"),
+        city: yup.string().required("נא להכניס ערך"),
+        accommodationUnit: yup.bool().required("נא לסמן"),
+        hasMMD: yup.bool().required("נא לסמן אם קיים מרחב מוגן"),
+        numOfBeds: yup.number().required("נא להכניס כמה מיטות יש לכם"),
+        numOfMattresses: yup.number().required("נא להכניס כמה מזרונים יש(ניתן להכניס 0)"),
+        numOfCribs: yup.number()/*.required("נא להכניס ערך(ניתן להכניס 0)")*/,
+        currentlyAvailable: yup.bool().required("נא לסמן"),
+        isAccessible: yup.bool(),
+        payment: yup.bool().required("נא לסמן"),
+        notes: yup.string(),
+        phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+        whatsapp: yup.bool().required("נא לסמן"),
+        email: yup.string(),
+    });
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        console.log(hostUrl);
+        await axios.post(hostUrl, data)
+            .then(response => {
+                if (response.status >= 200 && response.status < 300) {
+                    // console.log(response.data);
+                    console.log("Post");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
     return (
         <>
             <header>
@@ -38,7 +59,7 @@ function Host() {
             <div dir="rtl">
                 <div class="row g-0">
                     <div class="card-body p-md-5 text-black">
-                        <form onSubmit={() => {handleSubmit(()=>{}) }}>
+                        <form className="form" onSubmit={handleSubmit(onSubmit)}>
                             <>
                                 <div style={{ "display": "flex" }}>
                                 </div>
@@ -257,9 +278,9 @@ function Host() {
                                     </div>
                                 </div>
                                 <div class="form-row"> 
-                                    <button class="btn btn-outline-dark">פרסם</button>
                                 </div>
                             </>
+                            <input class="btn btn-outline-dark" type="submit"></input>
                         </form>
                     </div>
                 </div >
