@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import ApartmentFilter from './GuestComponents/js/Guest';
+import ApartmentFilter from './GuestComponents/Guest';
 
-import { HomePage } from './homePage/HomePage';
+import { HomePage } from './homePage/homePage';
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Host from './host/Host';
-import Guest from './GuestComponents/js/Guest';
+import Guest from './GuestComponents/Guest';
 import { Header } from './Header';
 
 function App() {
