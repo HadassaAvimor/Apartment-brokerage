@@ -15,6 +15,8 @@ function App() {
   return (
 
     <>
+    
+
       <Header></Header>
       <Provider store={store}>
         <Router>
@@ -28,7 +30,7 @@ function App() {
         </Router>
 
       </Provider>
-    </>
+</>
   );
 }
 

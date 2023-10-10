@@ -7,7 +7,7 @@ import img2 from '../images/img2.jpg';
 function HomePage() {
 
   const navigate = useNavigate();
-  const moveTohostMode = () => navigate('/host');
+  const moveTohostMode = () => navigate('/login');
   const moveToguestMode = () => navigate('/guest');
 
 
@@ -20,7 +20,7 @@ function HomePage() {
           <h5 class="card-title">מעונין לארח?</h5>
           <p class="card-text">בוא והיה שותף באירוח משפחה מאזור המלחמה</p>
           <button type="button" onClick={moveTohostMode}>
-            host
+            Host
           </button>
           </div>
       </div>
@@ -31,7 +31,7 @@ function HomePage() {
           <h5 class="card-title">מעונין להתארח?</h5>
           <p class="card-text">כאן תוכל למצוא את המארח המתאים בדיוק לצרכך, הוא מחכה רק לך!</p>
           <button type="button" onClick={moveToguestMode}>
-            host
+            Guest
           </button>
           </div>
       </div>
