@@ -32,7 +32,7 @@ function Host() {
         <div dir="rtl" className="card card-registration my-10">
             <div className="row g-0">
                 <div className="card-body p-md-5 text-black">
-                    <form className="form" onSubmit={}>
+                    <form className="form">
                         <>
                         <div style={{ "display": "flex" }}>
                         </div>
