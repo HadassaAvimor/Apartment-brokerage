@@ -7,7 +7,6 @@ const errorMW = require('../middlewares/errors');
 var bcrypt = require('bcryptjs');
 
 const auth = require("../middlewares/auth");
-router.use(auth);
 
 router.get('/', async (req, res) => {
     res.send(await hostService.getAll())
@@ -16,6 +15,7 @@ router.get('/', async (req, res) => {
 router.get(`/:id`, async (req, res) => {
     res.send(await hostService.getById(req.params.id))
 })
+router.use(auth);
 
 
 router.put(`/:id`, async (req, res, next) => {
