@@ -36,5 +36,9 @@ module.exports = class HostService {
     async delete(id) {
         return await repo.delete(id);
     }
+    
+    async validateByEmail(email){
+        return await repo.validateByEmail(email);
+    }
 
 }
