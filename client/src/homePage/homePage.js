@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../style/homePage.css";
-export function HomePage() {
+function HomePage() {
 
   const navigate = useNavigate();
   const moveTohostMode = () => navigate('/host');
@@ -15,7 +15,7 @@ export function HomePage() {
         <img src="..." class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title">מעונין לארח?</h5>
-          <p class="card-text">בוא ויהיה שותף באירוח משפחה מאזור המלחמה</p>
+          <p class="card-text">בוא והיה שותף באירוח משפחה מאזור המלחמה</p>
           <button type="button" onClick={moveTohostMode}>
             host
           </button>
@@ -27,7 +27,7 @@ export function HomePage() {
         <div class="card-body">
           <h5 class="card-title">מעונין להתארח?</h5>
           <p class="card-text">כאן תוכל למצוא את המארח המתאים בדיוק לצרכך, הוא מחכה רק לך!</p>
-          <button type="button" onClick={moveTohostMode}>
+          <button type="button" onClick={moveToguestMode}>
             host
           </button>
           </div>
@@ -36,3 +36,4 @@ export function HomePage() {
     </>
   )
 }
+export default HomePage;
