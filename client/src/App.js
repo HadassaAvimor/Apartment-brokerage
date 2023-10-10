@@ -1,6 +1,7 @@
 import './App.css';
 import store from './redux/store';
 import { Provider } from 'react-redux';
+
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Host from './host/Host';
@@ -9,6 +10,7 @@ import Login from './loginWithAuth/Login';
 import { Header } from './Header';
 // import Update from './host/update';
 import HomePage from './homePage/homePage';
+
 
 function App() {
   return (
