@@ -1,0 +1,16 @@
+.card {
+  margin-bottom: 4rem;
+  background-color: rgb(247, 247, 247);
+  height: 100%;
+}
+
+.card-title {
+  font-weight: 900;
+  flex-grow: 1;
+}
+.card-description {
+  font-size: 13px;
+
+  overflow: hidden;
+  height: 100px;
+}

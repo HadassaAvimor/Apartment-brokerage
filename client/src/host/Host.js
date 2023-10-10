@@ -58,9 +58,6 @@ function Host() {
 
     return (
         <>
-            <header>
-                <Header></Header>
-            </header>
             <div dir="rtl">
                 <div class="row g-0">
                     <div class="card-body p-md-5 text-black">
