@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 router.get(`/:id`, async (req, res) => {
     res.send(await hostService.getById(req.params.id))
 })
+
 router.use(auth);
 
 
