@@ -2,12 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import ApartmentFilter from './GuestComponents/js/Guest';
 
-import { HomePage } from './homePage/HomePage';
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Host from './host/Host';
 import Guest from './GuestComponents/js/Guest';
 import { Header } from './Header';
+import { HomePage } from './homePage/homePage';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
       <header className="App-header">
         <Header></Header>
       </header>
+      <body  dir="rtl">
       <>
         <Router>
           <Routes>
@@ -24,7 +25,7 @@ function App() {
             <Route path="/guest" element={<Guest />} />
           </Routes>
         </Router>
-        </>
+        </></body>
     </>
   );
 }

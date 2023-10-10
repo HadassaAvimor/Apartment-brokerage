@@ -11,7 +11,7 @@ import { Header } from "../Header";
 function Host() {
     const baseUrl = process.env.REACT_APP_API_URL;
     const hostUrl = `http://localhost:3001`;//`${baseUrl}/hosts`
-    
+
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const schema = yup.object().shape({
@@ -53,234 +53,226 @@ function Host() {
 
     return (
         <>
-            <div dir="rtl">
-                <div class="row g-0">
-                    <div class="card-body p-md-5 text-black">
-                        <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                            <>
-                                <div style={{ "display": "flex" }}>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="form3Example1m">שם מלא</label>
-                                        <input id="form3Example1m" class="form-control"
-                                            type="text"
-                                            name="name"
-                                            {...register('name')} />
-                                        <small class="text-danger">
-                                            {errors?.name && errors.name.message}
-                                        </small>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="form3Example1m">עיר</label>
-                                        <input id="form3Example1m" class="form-control"
-                                            type="text"
-                                            name="city"
-                                            {...register('city')}
-                                        />
-                                        <small class="text-danger">
-                                            {errors?.city && errors.city.message}
-                                        </small>
-                                    </div>
-                                </div>
+            <div dir="rtl" style={{
+                marginLeft: '20%', marginRight: '20%',
+                justifyContent: 'center'
+            }}>
+                <div class="card-body p-md-2 text-black">
+                    <form className="form">
+                        <div class="row">
+                            <div className="form-outline mb-4">
+                                <label className="form-label" for="form3Example1m">שם מלא</label>
+                                <input id="form3Example1m" className="form-control"
+                                    type="text"
+                                    name="name"
+                                    {...register('name')} />
+                                <small className="text-danger">
+                                    {errors?.name && errors.name.message}
+                                </small>
+                            </div>
+                            <div className="form-outline mb-4">
+                                <label className="form-label" for="form3Example1m">עיר</label>
+                                <input id="form3Example1m" className="form-control"
+                                    type="text"
+                                    name="city"
+                                    {...register('city')}
+                                />
+                                <small className="text-danger">
+                                    {errors?.city && errors.city.message}
+                                </small>
+                            </div>
+                        </div>
+                        <div style={{ "display": "flex" }}>
+                            <div className="form-outline mb-4" dir="rtl">
+                                <label className="form-label" for="form3Example1m">האם יש כניסה נפרדת?</label>
+                                <br />
+                                <label className="form-label" for="form3Example1m">כן</label>
+                                <input type="radio" value="true" name="accommodationUnit"
+                                    {...register('accommodationUnit')} />
+                                <br />
+                                <label className="form-label" for="form3Example1m">לא</label>
+                                <input type="radio" value="false" name="accommodationUnit"
+                                    {...register('accommodationUnit')}
+                                />
+                                <small className="text-danger">
+                                    {errors?.accommodationUnit && errors.accommodationUnit.message}
+                                </small>
+                            </div>
+                            <div className="form-outline mb-4">
+                                <label className="form-label" for="form3Example1m">האם יש מרחב מוגן?</label>
+                                <br />
+                                <label className="form-label" for="form3Example1m">כן</label>
+                                <input type="radio" value="true" name="hasMMD"
+                                    {...register('hasMMD')}
+                                />
+                                <br />
+                                <label className="form-label" for="form3Example1m">לא</label>
+                                <input type="radio" value="false" name="hasMMD"
+                                    {...register('hasMMD')} />
+                                <small className="text-danger">
+                                    {errors?.hasMMD && errors.hasMMD.message}
+                                </small>
+                            </div>
+                        </div>
+                        <div style={{ "display": "flex" }}>
+                            <div className="form-outline mb-4">
+                                <label className="form-label" for="form3Example1m">מספר מיטות</label>
+                                <input id="form3Example1m" className="form-control"
+                                    type="number"
+                                    name="numOfBeds"
+                                    min="0"
+                                    {...register('numOfBeds')}
+                                    defaultValue={0}
+                                />
+                                <small className="text-danger">
+                                    {errors?.numOfBeds && errors.numOfBeds.message}
+                                </small>
+                            </div>
+                            <div className="form-outline mb-4">
+                                <label className="form-label" for="form3Example1m">מספר מזרנים</label>
+                                <input id="form3Example1m" className="form-control"
+                                    type="number"
+                                    name="numOfMattresses"
+                                    min="0"
+                                    {...register('numOfMattresses')}
+                                    defaultValue={0}
+                                />
+                                <small className="text-danger">
+                                    {errors?.numOfMattresses && errors.numOfMattresses.message}
+                                </small>
+                            </div>
+                        </div>
+                        <div style={{ "display": "flex" }}>
+                            <div className="form-outline mb-4">
+                                <label className="form-label" for="form3Example1m">מספר עריסות</label>
+                                <input id="form3Example1m" className="form-control"
+                                    type="number"
+                                    name="numOfCribs"
+                                    min="0"
+                                    {...register('numOfBeds')}
+                                    defaultValue={0}
+                                />
+                                <small className="text-danger">
+                                    {errors?.numOfCribs && errors.numOfCribs.message}
+                                </small>
+                            </div>
+                            <div className="form-outline mb-4">
+                                <label className="form-label" for="form3Example1m">האם זמין כרגע?</label>
+                                <label className="form-label" for="form3Example1m">כן</label>
+                                <input type="radio" value="true" name="currentlyAvailable"
+                                    {...register('currentlyAvailable')} />
+                                <br />
+                                <label className="form-label" for="form3Example1m">לא</label>
+                                <input type="radio" value="false" name="currentlyAvailable"
+                                    {...register('currentlyAvailable')} />
+                                <small className="text-danger">
+                                    {errors?.currentlyAvailable && errors.currentlyAvailable.message}
+                                </small>
+                            </div>
+                        </div>
+                        <div style={{ "display": "flex" }}>
+                            <div className="form-outline mb-4">
+                                <label className="form-label" for="form3Example1m">האם המקום נגיש?</label>
+                                <br />
+                                <label class="form-label" for="form3Example1m">כן</label>
+                                <input type="radio" value="true" name="isAccessible"
+                                    {...register('isAccessible')}
+                                />
+                                <br />
+                                <label class="form-label" for="form3Example1m">לא</label>
+                                <input type="radio" value="false" name="isAccessible"
+                                    {...register('isAccessible')}
+                                />
+                                <small class="text-danger">
+                                    {errors?.isAccessible && errors.isAccessible.message}
+                                </small>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="form-label" for="form3Example1m">האם בתשלום</label>
+                                <br></br>
+                                <label class="form-label" for="form3Example1m">כן</label>
 
+                                <input type="radio" value="true" name="payment"
+                                    {...register('payment')} />
+                                <br />
+                                <label class="form-label" for="form3Example1m">לא</label>
+                                <input type="radio" value="false" name="payment"
+                                    {...register('payment')}
+                                />
+                                <br></br>
+                                <small class="text-danger">
+                                    {errors?.payment && errors.payment.message}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="form3Example1m">הערות</label>
+                                <textarea
+                                    id="form3Example1m"
+                                    class="form-control"
+                                    name="notes"
+                                    {...register('notes')} />
+                                <small class="text-danger">
+                                    {errors?.isAccessible && errors.isAccessible.message}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="form3Example1m">מספר טלפון</label>
+                                <input
+                                    id="form3Example1m"
+                                    class="form-control"
+                                    type="text"
+                                    name="phone"
+                                    maxLength="10"
+                                    {...register('phone')}
+                                />
+                                <small class="text-danger">
+                                    {errors?.phone && errors.phone.message}
+                                </small>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="form-label" for="form3Example1m">האם יש ווצאפ?</label>
+                                <br></br>
+                                <label class="form-label" for="form3Example1m">כן</label>
 
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="form3Example1m">האם יש כניסה נפרדת?</label>
-                                        <br />
-                                        <label for="form3Example1m">כן</label>
-                                        <input type="radio" value="true" name="accommodationUnit"
-                                            {...register('accommodationUnit')} />
-                                        <br />
-                                        <label for="form3Example1m">לא</label>
-                                        <input type="radio" value="false" name="accommodationUnit"
-                                            {...register('accommodationUnit')}
-                                        />
-                                        <small class="text-danger">
-                                            {errors?.accommodationUnit && errors.accommodationUnit.message}
-                                        </small>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label class="form-label" for="form3Example1m">האם יש מרחב מוגן?</label>
-                                        <br />
-                                        <label class="form-label" for="form3Example1m">כן</label>
-                                        <input type="radio" value="true" name="hasMMD"
-                                            {...register('hasMMD')}
-                                        />
-                                        <br />
-                                        <label class="form-label" for="form3Example1m">לא</label>
-                                        <input type="radio" value="false" name="hasMMD"
-                                            {...register('hasMMD')} />
-                                        <small class="text-danger">
-                                            {errors?.hasMMD && errors.hasMMD.message}
-                                        </small>
-                                    </div>
-                                </div>
+                                <input type="radio" value="true" name="whatsapp"
+                                    {...register('whatsapp')}
+                                />
+                                <br></br>
+                                <label className="form-label" for="form3Example1m">לא</label>
+                                <input type="radio" value="false" name="whatsapp"
+                                    {...register('whatsapp')}
+                                />
+                                <br></br>
+                                <small className="text-danger">
+                                    {errors?.whatsapp && errors.payment.whatsapp}
+                                </small>
+                            </div>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <label className="form-label" for="form3Example1m">דואר אלקטרוני</label>
+                            <input
+                                id="form3Example1m"
+                                className="form-control"
+                                type="email"
+                                name="email"
+                                pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+"
+                                maxLength="255"
+                                {...register('email')}
+                            />
+                            <small className="text-danger">
+                                {errors?.email && errors.email.message}
+                            </small>
+                        </div>
 
-                                <div class="form-row">
-                                    <div class="form-group col-md-2">
-                                        <label for="form3Example1m">מספר מיטות</label>
-                                        <input id="form3Example1m" class="form-control"
-                                            type="number"
-                                            name="numOfBeds"
-                                            min="0"
-                                            {...register('numOfBeds')}
-                                            defaultValue={0}
-                                        />
-                                        <small class="text-danger">
-                                            {errors?.numOfBeds && errors.numOfBeds.message}
-                                        </small>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label for="form3Example1m">מספר מזרנים</label>
-                                        <input id="form3Example1m" class="form-control"
-                                            type="number"
-                                            name="numOfMattresses"
-                                            min="0"
-                                            {...register('numOfMattresses')}
-                                            defaultValue={0}
-                                        />
-                                        <small class="text-danger">
-                                            {errors?.numOfMattresses && errors.numOfMattresses.message}
-                                        </small>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label for="form3Example1m">מספר עריסות</label>
-                                        <input id="form3Example1m" class="form-control"
-                                            type="number"
-                                            name="numOfCribs"
-                                            min="0"
-                                            {...register('numOfBeds')}
-                                            defaultValue={0}
-                                        />
-                                        <small class="text-danger">
-                                            {errors?.numOfCribs && errors.numOfCribs.message}
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-2">
-                                        <label class="form-label" for="form3Example1m">הא זמין כרגע?</label>
-                                        <br />
-                                        <label class="form-label" for="form3Example1m">כן</label>
-                                        <input type="radio" value="true" name="currentlyAvailable"
-                                            {...register('currentlyAvailable')} />
-                                        <br />
-                                        <label class="form-label" for="form3Example1m">לא</label>
-                                        <input type="radio" value="false" name="currentlyAvailable"
-                                            {...register('currentlyAvailable')} />
-                                        <small class="text-danger">
-                                            {errors?.currentlyAvailable && errors.currentlyAvailable.message}
-                                        </small>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label class="form-label" for="form3Example1m">האם המקום נגיש?</label>
-                                        <br />
+                        <button className="btn btn-dark btn-lg btn-block">פרסם</button>
+                        <div />
 
-                                        <label class="form-label" for="form3Example1m">כן</label>
-
-                                        <input type="radio" value="true" name="isAccessible"
-                                            {...register('isAccessible')}
-                                        />
-                                        <br />
-                                        <label class="form-label" for="form3Example1m">לא</label>
-                                        <input type="radio" value="false" name="isAccessible"
-                                            {...register('isAccessible')}
-                                        />
-                                        <small class="text-danger">
-                                            {errors?.isAccessible && errors.isAccessible.message}
-                                        </small>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label class="form-label" for="form3Example1m">האם בתשלום</label>
-                                        <br></br>
-                                        <label class="form-label" for="form3Example1m">כן</label>
-
-                                        <input type="radio" value="true" name="payment"
-                                            {...register('payment')} />
-                                        <br />
-                                        <label class="form-label" for="form3Example1m">לא</label>
-                                        <input type="radio" value="false" name="payment"
-                                            {...register('payment')}
-                                        />
-                                        <br></br>
-                                        <small class="text-danger">
-                                            {errors?.payment && errors.payment.message}
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="form3Example1m">הערות</label>
-                                        <textarea
-                                            id="form3Example1m"
-                                            class="form-control"
-                                            name="notes"
-                                            {...register('notes')} />
-                                        <small class="text-danger">
-                                            {errors?.isAccessible && errors.isAccessible.message}
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="form3Example1m">מספר טלפון</label>
-                                        <input
-                                            id="form3Example1m"
-                                            class="form-control"
-                                            type="text"
-                                            name="phone"
-                                            maxLength="10"
-                                            {...register('phone')}
-                                        />
-                                        <small class="text-danger">
-                                            {errors?.phone && errors.phone.message}
-                                        </small>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label class="form-label" for="form3Example1m">האם יש ווצאפ?</label>
-                                        <br></br>
-                                        <label class="form-label" for="form3Example1m">כן</label>
-
-                                        <input type="radio" value="true" name="whatsapp"
-                                            {...register('whatsapp')}
-                                        />
-                                        <br></br>
-                                        <label class="form-label" for="form3Example1m">לא</label>
-                                        <input type="radio" value="false" name="whatsapp"
-                                            {...register('whatsapp')}
-                                        />
-                                        <br></br>
-                                        <small class="text-danger">
-                                            {errors?.whatsapp && errors.payment.whatsapp}
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="form3Example1m">דואר אלקטרוני</label>
-                                        <input
-                                            id="form3Example1m"
-                                            class="form-control"
-                                            type="email"
-                                            name="email"
-                                            pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+"
-                                            maxLength="255"
-                                            {...register('email')}
-                                        />
-                                        <small class="text-danger">
-                                            {errors?.email && errors.email.message}
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="form-row"> 
-                                </div>
-                            </>
-                            <input class="btn btn-outline-dark" type="submit"></input>
-                        </form>
-                    </div>
-                </div >
+                    </form>
+                </div>
             </div >
         </>);
 }
