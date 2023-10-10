@@ -8,9 +8,8 @@ import { Home } from './homePage/homePage';
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Host from './host/Host';
-import Guest from './guest/Guest';
+import Guest from './GuestComponents/js/Guest';
 
-import Host from './host/Host';
 
 function App() {
   return (
@@ -29,8 +28,8 @@ function App() {
         </Router>
         </>
         <Host></Host>
+        <Guest></Guest>
       </header>
-    </div>
     
     </>
   );
