@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import ApartmentFilter from './GuestComponents/js/Guest';
+
 import { H } from './homePage/h';
 import { G } from './homePage/g';
 import { Home } from './homePage/homePage';
@@ -13,7 +15,7 @@ import Host from './host/Host';
 function App() {
   return (
     <>
-    <div className="App">
+    
       <header className="App-header">
         <>
         <Router>
