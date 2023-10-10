@@ -57,7 +57,7 @@ function Host() {
             })
             .catch(error => {
                 console.log(error);
-            });git 
+            });
     }
 
     return (
