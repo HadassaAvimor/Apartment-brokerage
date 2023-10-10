@@ -11,6 +11,8 @@ require('dotenv').config();
 // Register
 router.post("/register", async (req, res, next) => {
     //Check if User exist
+    console.log("----------------------------------------------------------------");
+    console.log(req);
     try {
         const existingUser = await hostService.validateByEmail(req.body.email);
         if (existingUser) {

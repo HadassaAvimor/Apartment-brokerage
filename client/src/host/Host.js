@@ -3,6 +3,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Header } from "../Header";
+import { getToken } from "../loginWithAuth/TokenService";
 
 // import { useDispatch, useSelector } from "react-redux";
 
@@ -10,8 +11,8 @@ import { Header } from "../Header";
 
 function Host() {
     const baseUrl = process.env.REACT_APP_API_URL;
-    const hostUrl = `http://localhost:3001`;//`${baseUrl}/hosts`
-    
+    const hostUrl = `http://localhost:3001/auth/register`;//`${baseUrl}/hosts`
+
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const schema = yup.object().shape({
@@ -30,21 +31,25 @@ function Host() {
         phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
         whatsapp: yup.bool().required("נא לסמן"),
         email: yup.string(),
+        password: yup.string().min(5).max(12).required()
     });
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
+    var config = {
+        headers: { "x-access-token": getToken() }
+    };
 
     const onSubmit = async (data) => {
         console.log(data);
-        console.log(hostUrl);
-        await axios.post(hostUrl, data)
+        await axios.post(hostUrl, data, config)
             .then(response => {
                 if (response.status >= 200 && response.status < 300) {
-                    // console.log(response.data);
-                    console.log("Post");
+                    console.log(response.data);
                 }
+                console.log("Post");
+
             })
             .catch(error => {
                 console.log(error);
@@ -273,8 +278,14 @@ function Host() {
                                             {errors?.email && errors.email.message}
                                         </small>
                                     </div>
+
                                 </div>
-                                <div class="form-row"> 
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="password" {...register("password")}></input>
+                                    <p>{errors.password?.message}</p>
+                                </div>
+
+                                <div class="form-row">
                                 </div>
                             </>
                             <input class="btn btn-outline-dark" type="submit"></input>
