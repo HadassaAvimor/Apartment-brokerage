@@ -1,8 +1,9 @@
 import * as yup from "yup";
-
+import { MDBContainer } from "mdb-react-ui-kit"; 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Header } from "../Header";
+import "./Host.css"
 
 // import { useDispatch, useSelector } from "react-redux";
 
@@ -32,9 +33,11 @@ function Host() {
     });
     return (
         <>
+            <div class="wrap">
             <header>
                 <Header></Header>
             </header>
+
             <div dir="rtl">
                 <div class="row g-0">
                     <div class="card-body p-md-5 text-black">
@@ -263,7 +266,7 @@ function Host() {
                         </form>
                     </div>
                 </div >
-            </div >
+            </div ></div>
         </>);
 }
 export default Host
