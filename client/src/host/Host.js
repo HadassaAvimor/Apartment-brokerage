@@ -1,24 +1,19 @@
 import * as yup from "yup";
 import axios from "axios";
-// import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Header } from "../Header";
 import { getToken } from "../loginWithAuth/TokenService";
 import { MDBContainer } from "mdb-react-ui-kit"; 
 import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import { Header } from "../Header";
 import "./Host.css"
 
-// import { useDispatch, useSelector } from "react-redux";
 
 
 
 function Host() {
     const baseUrl = process.env.REACT_APP_API_URL;
     console.log(baseUrl);
-    const hostUrl = `${baseUrl}/auth/register`//`http://localhost:3001/auth/register`;
-
+    const hostUrl = `${baseUrl}/auth/register`;
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const schema = yup.object().shape({
@@ -58,7 +53,7 @@ function Host() {
             })
             .catch(error => {
                 console.log(error);
-            });git 
+            }); 
     }
 
     return (

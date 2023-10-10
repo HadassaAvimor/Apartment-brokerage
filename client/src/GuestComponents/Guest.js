@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function Guest() {
 
+    const baseUrl = process.env.REACT_APP_API_URL;
     const [apartments, setApartments] = useState([]);
     const [filteredApartments, setFilteredApartments] = useState([]);
 
@@ -36,7 +37,7 @@ function Guest() {
     useEffect(() => {
         async function getAppartments() {
             try {
-                const response = await axios.get('http://localhost:3001/hosts');
+                const response = await axios.get(`${baseUrl}hosts`);
                 setApartments(response.data);
             } catch (error) {
                 console.log(error);
