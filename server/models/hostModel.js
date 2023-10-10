@@ -15,8 +15,8 @@ const hostSchema = new mongoose.Schema({
     notes:String,
     phone:String,
     whatsapp:Boolean,
-    email:String
-    
+    email:String,
+    password:String
 }, {collection: "host"});
 
 const HostModel = mongoose.model("host", hostSchema);
@@ -36,7 +36,8 @@ const validHostFunc =(_bodyData)=>{
         notes:Joi.string().required(),
         phone:Joi.string().required(),
         whatsapp:Joi.boolean().required(),
-        email:Joi.string().required()
+        email:Joi.string().required(),
+        password: Joi.string().required()
     })
     return joiSchema.validate(_bodyData);
     }
