@@ -1,0 +1,14 @@
+*{
+    margin: auto;
+}
+.cards{
+    display: flex;
+    margin: 8%;
+}
+@media (max-width: 768px) {
+    .cards {
+        /* Override the display property for mobile screens */
+        display: block;
+        /* Add any other mobile-specific styles here */
+    }
+}

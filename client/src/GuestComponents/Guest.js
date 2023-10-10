@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import '../style/guest.css'
 function ApartmentFilter() {
 
     const [apartments, setApartments] = useState([]);
@@ -14,7 +14,6 @@ function ApartmentFilter() {
         cradles: '',
         accessible: false, // Set default value to false
     });
-
 
 
     useEffect(() => {
@@ -119,7 +118,7 @@ function ApartmentFilter() {
 
 
     return (
-        <div>
+        <div className="apartment-filter">
 
             <label for="city">עיר</label>
             <input
@@ -180,28 +179,28 @@ function ApartmentFilter() {
 
 
 
-            <button onClick={filterApartments}>Apply Filters</button>
+            {/* <button onClick={filterApartments}>Apply Filters</button> */}
 
 
             <h1>כל הדירות</h1>
-            <div>
+            <div >
 
                 {filteredApartments.map((item, index) => (
-                    <div key={index}>
-                        <h2>Name: {item.name}</h2>
-                        <p>City: {item.city}</p>
-                        <p>Accommodation Unit: {item.accommodationUnit ? 'Yes' : 'No'}</p>
-                        <p>Number of Beds: {item.numOfBeds}</p>
-                        <p>Number of Mattresses: {item.numOfMattresses}</p>
-                        <p>Number of Cribs: {item.numOfCribs}</p>
-                        <p>Has MMD: {item.hasMMD ? 'Yes' : 'No'}</p>
-                        <p>Currently Available: {item.currentlyAvailable ? 'Yes' : 'No'}</p>
-                        <p>Is Accessible: {item.isAccessible ? 'Yes' : 'No'}</p>
-                        <p>Payment: {item.payment ? 'Yes' : 'No'}</p>
-                        <p>Notes: {item.notes}</p>
-                        <p>Phone: {item.phone}</p>
-                        <p>WhatsApp: {item.whatsapp ? 'Yes' : 'No'}</p>
-                        <p>Email: {item.email}</p>
+                    <div key={index} className='card'>
+                        <h2 className='card-title'>שם: {item.name}</h2>
+                        <p>עיר: {item.city}</p>
+                        <p>יחידת אירוח: {item.accommodationUnit ? 'כן' : 'לא'}</p>
+                        <p>מספר מיטות: {item.numOfBeds}</p>
+                        <p>מספר מזרנים: {item.numOfMattresses}</p>
+                        <p>מספר עריסות: {item.numOfCribs}</p>
+                        <p>יש ממ"ד: {item.hasMMD ? 'כן' : 'לא'}</p>
+                        <p>פנוי כרגע: {item.currentlyAvailable ? 'כן' : 'לא'}</p>
+                        <p>נגיש: {item.isAccessible ? 'כן' : 'לא'}</p>
+                        <p>בתשלום: {item.payment ? 'כן' : 'לא'}</p>
+                        <p>הערות: {item.notes}</p>
+                        <p>טלפון: {item.phone}</p>
+                        <p>האם יש ווצאפ: {item.whatsapp ? 'כן' : 'לא'}</p>
+                        <p>מייל: {item.email}</p>
                     </div>
                 ))}
             </div>
