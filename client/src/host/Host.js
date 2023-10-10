@@ -4,6 +4,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Header } from "../Header";
 import { getToken } from "../loginWithAuth/TokenService";
+import { MDBContainer } from "mdb-react-ui-kit"; 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Header } from "../Header";
+import "./Host.css"
 
 // import { useDispatch, useSelector } from "react-redux";
 
@@ -57,6 +62,14 @@ function Host() {
 
     return (
         <>
+<<<<<<< HEAD
+=======
+            <div class="wrap">
+            <header>
+                <Header></Header>
+            </header>
+
+>>>>>>> 7881ccf29a5fd9d4d21f4930d38f82b92a8eb977
             <div dir="rtl">
                 <div class="row g-0">
                     <div class="card-body p-md-5 text-black">
@@ -291,7 +304,7 @@ function Host() {
                         </form>
                     </div>
                 </div >
-            </div >
+            </div ></div>
         </>);
 }
 export default Host

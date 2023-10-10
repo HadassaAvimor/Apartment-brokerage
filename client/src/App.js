@@ -1,21 +1,23 @@
 import './App.css';
-import store  from './redux/store';
+import store from './redux/store';
 import { Provider } from 'react-redux';
-import { HomePage } from './homePage/homePage';
+import { HomePage } from './homePage/HomePage';
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Host from './host/Host';
 import Guest from './GuestComponents/Guest';
 import Login from './loginWithAuth/Login';
 import { Header } from './Header';
+import Update from './host/update';
 
 function App() {
   return (
+
     <>
     
-         
-        <Header></Header>
-        <Provider store={store}>
+
+      <Header></Header>
+      <Provider store={store}>
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -27,8 +29,7 @@ function App() {
         </Router>
 
       </Provider>
-
-      </>
+</>
   );
 }
 
