@@ -4,7 +4,7 @@ import "../style/homePage.css";
 export function HomePage() {
 
   const navigate = useNavigate();
-  const moveTohostMode = () => navigate('/host');
+  const moveTohostMode = () => navigate('/login');
   const moveToguestMode = () => navigate('/guest');
 
 
@@ -17,7 +17,7 @@ export function HomePage() {
           <h5 class="card-title">מעונין לארח?</h5>
           <p class="card-text">בוא ויהיה שותף באירוח משפחה מאזור המלחמה</p>
           <button type="button" onClick={moveTohostMode}>
-            host
+            Host
           </button>
           </div>
       </div>
@@ -27,8 +27,8 @@ export function HomePage() {
         <div class="card-body">
           <h5 class="card-title">מעונין להתארח?</h5>
           <p class="card-text">כאן תוכל למצוא את המארח המתאים בדיוק לצרכך, הוא מחכה רק לך!</p>
-          <button type="button" onClick={moveTohostMode}>
-            host
+          <button type="button" onClick={moveToguestMode}>
+            Guest
           </button>
           </div>
       </div>

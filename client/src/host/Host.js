@@ -48,12 +48,11 @@ function Host() {
                 if (response.status >= 200 && response.status < 300) {
                     console.log(response.data);
                 }
-                console.log("Post");
 
             })
             .catch(error => {
                 console.log(error);
-            });
+            });git 
     }
 
     return (

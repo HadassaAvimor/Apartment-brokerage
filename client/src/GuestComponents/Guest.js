@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../style/guest.css'
-function ApartmentFilter() {
+function Guest() {
 
     const [apartments, setApartments] = useState([]);
     const [filteredApartments, setFilteredApartments] = useState([]);
@@ -209,4 +209,4 @@ function ApartmentFilter() {
     );
 }
 
-export default ApartmentFilter;
+export default Guest;
