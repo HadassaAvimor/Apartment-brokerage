@@ -28,7 +28,7 @@ const validHostFunc =(_bodyData)=>{
         accommodationUnit:Joi.boolean().required(),
         numOfBeds:Joi.number().min(0, "Please enter a valid number").required(),
         numOfMattresses:Joi.number().min(0, "Please enter a valid number").required(),
-        numOfCribs:Joi.number().min(0, "Please enter a valid number").required(),
+        numOfCribs:Joi.number().min(0, "Please enter a valid number")/*.required()*/,
         hasMMD:Joi.boolean().required(),
         currentlyAvailable:Joi.boolean().required(),
         isAccessible:Joi.boolean().required(),
