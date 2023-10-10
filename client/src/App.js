@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Host from './host/Host';
 import Guest from './guest/Guest';
 
+import Host from './host/Host';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           </Routes>
         </Router>
         </>
+        <Host></Host>
       </header>
     </div>
   );
