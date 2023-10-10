@@ -11,7 +11,8 @@ import { getToken } from "../loginWithAuth/TokenService";
 
 function Host() {
     const baseUrl = process.env.REACT_APP_API_URL;
-    const hostUrl = `http://localhost:3001/auth/register`;//`${baseUrl}/hosts`
+    console.log(baseUrl);
+    const hostUrl = `${baseUrl}/auth/register`//`http://localhost:3001/auth/register`;
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 

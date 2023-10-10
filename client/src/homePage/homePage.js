@@ -4,7 +4,7 @@ import "../style/homePage.css";
 export function HomePage() {
 
   const navigate = useNavigate();
-  const moveTohostMode = () => navigate('/host');
+  const moveTohostMode = () => navigate('/login');
   const moveToguestMode = () => navigate('/guest');
 
 
