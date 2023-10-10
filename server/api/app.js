@@ -5,7 +5,17 @@ const hostService = new HostService()
 const logger = require('../middlewares/logger');
 const errorMW = require('../middlewares/errors');
 
+const cors = require('cors');
+
 const app = express();
+
+// Allow requests from localhost:3000
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Allow cookies to be sent with the request (if applicable)
+  }));
+
 app.use(express.json());
 
 app.get('/', async (req, res) => {
@@ -45,6 +55,6 @@ app.post('/', async (req, res, next) => {
 
 app.use(errorMW);
 
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log('server is up and running')
 });

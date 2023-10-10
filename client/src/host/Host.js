@@ -1,11 +1,14 @@
 import * as yup from "yup";
-
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 // import { useDispatch, useSelector } from "react-redux";
 
 
+function Host() {
+const baseUrl = process.env.REACT_APP_API_URL;
+const hostUrl = `${baseUrl}`;//`${baseUrl}/hosts`
 const schema = yup.object().shape({
     id: yup.string(),
     name: yup.string().required("נא להכניס ערך"),
@@ -14,25 +17,39 @@ const schema = yup.object().shape({
     hasMMD: yup.bool().required("נא לסמן אם קיים מרחב מוגן"),
     numOfBeds: yup.number().required("נא להכניס כמה מיטות יש לכם"),
     numOfMattresses: yup.number().required("נא להכניס כמה מזרונים יש(ניתן להכניס 0)"),
-    numOfCribs: yup.number().required("נא להכניס ערך(ניתן להכניס 0)"),
+    numOfCribs: yup.number()/*.required("נא להכניס ערך(ניתן להכניס 0)")*/,
     currentlyAvailable: yup.bool().required("נא לסמן"),
     isAccessible: yup.bool(),
     payment: yup.bool().required("נא לסמן"),
     notes: yup.string(),
-    phone: yup.string().required().matches(phoneRegExp, 'Phone number is not valid'),
+    phone: yup.string().required()/*.matches(phoneRegExp, 'Phone number is not valid')*/,
     whatsapp: yup.bool().required("נא לסמן"),
     email: yup.string(),
 });
-function Host() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        await axios.post(baseUrl, data)
+            .then(response => {
+                if (response.status >= 200 && response.status < 300) {
+                    // console.log(response.data);
+                    console.log("Post");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
     return (
     <>
         <div dir="rtl" className="card card-registration my-10">
             <div className="row g-0">
                 <div className="card-body p-md-5 text-black">
-                    <form className="form">
+                    <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <>
                         <div style={{ "display": "flex" }}>
                         </div>
@@ -225,7 +242,7 @@ function Host() {
                         className="form-control"
                         type="email"
                         name="email"
-                        pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+"
+                        // pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+"
                         maxLength="255"
                         {...register('email')}
                     />
@@ -235,6 +252,7 @@ function Host() {
                 </div>
                 <button className="btn btn-dark btn-lg btn-block">עדכון</button>
                 </>
+                <input class="form-control" type="submit"></input>
             </form>
         </div>
     </div >
