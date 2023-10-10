@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import '../style/guest.css'
+import '../style/guest.css';
+import axios from 'axios';
+
+
 function ApartmentFilter() {
 
     const [apartments, setApartments] = useState([]);
@@ -15,53 +18,21 @@ function ApartmentFilter() {
         accessible: false, // Set default value to false
     });
 
-
     useEffect(() => {
-        setApartments([
-            {
-                "name": "Chana",
-                "city": "Modi'in",
-                "accommodationUnit": false,
-                "numOfBeds": 7,
-                "numOfMattresses": 6,
-                "numOfCribs": 1,
-                "hasMMD": true,
-                "currentlyAvailable": true,
-                "isAccessible": false,
-                "payment": false,
-                "notes": "Nothing",
-                "phone": "0505874521",
-                "whatsapp": true,
-                "email": "chana@gmail.com"
-            },
-            {
-                "name": "Chana",
-                "city": "Modi'in",
-                "accommodationUnit": false,
-                "numOfBeds": 7,
-                "numOfMattresses": 6,
-                "numOfCribs": 1,
-                "hasMMD": false,
-                "currentlyAvailable": false,
-                "isAccessible": true,
-                "payment": false,
-                "notes": "Nothing",
-                "phone": "0505874521",
-                "whatsapp": true,
-                "email": "chana@gmail.com"
-            },
-        ])
+      async function getAppartments() {
+            await axios.get('http://localhost:3001/hosts')
+            .then((response) => {
+                setApartments(response.data)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
+        }
 
-
-
-
+        getAppartments();
         setFilteredApartments(filterApartments());
-
-        //initinals the apartments varible...
-        // axios.get....
-
-    }, [filters]);
+    }, [],filters);
 
 
 
@@ -104,10 +75,10 @@ function ApartmentFilter() {
                 return false
             }
 
-            if (filters.accessible && apartment.isAccessible){
+            if (filters.accessible && apartment.isAccessible) {
                 return false
             }
-            
+
             return true; // If all conditions pass, keep the apartment in the filtered list
         });
 
@@ -183,7 +154,7 @@ function ApartmentFilter() {
 
 
             <h1>כל הדירות</h1>
-            <div >
+            <div className='d-flex p-2 bd-highlight'>
 
                 {filteredApartments.map((item, index) => (
                     <div key={index} className='card'>

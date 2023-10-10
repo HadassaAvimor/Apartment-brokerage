@@ -27,7 +27,7 @@ export function HomePage() {
         <div class="card-body">
           <h5 class="card-title">מעונין להתארח?</h5>
           <p class="card-text">כאן תוכל למצוא את המארח המתאים בדיוק לצרכך, הוא מחכה רק לך!</p>
-          <button type="button" onClick={moveTohostMode}>
+          <button type="button" onClick={moveToguestMode}>
             host
           </button>
           </div>

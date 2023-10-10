@@ -10,7 +10,7 @@ const auth = require("./auth");
 const app = express();
 // Allow requests from localhost:3000
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow cookies to be sent with the request (if applicable)
   }));
