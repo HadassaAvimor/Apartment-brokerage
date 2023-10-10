@@ -18,21 +18,35 @@ function ApartmentFilter() {
         accessible: false, // Set default value to false
     });
 
+    // useEffect(() => {
+    //   async function getAppartments() {
+    //         await axios.get('http://localhost:3001/hosts')
+    //         .then((response) => {
+    //             setApartments(response.data)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+
+    //     }
+
+    //     getAppartments();
+    //     setFilteredApartments(filterApartments());
+    // }, [],filters);
     useEffect(() => {
-      async function getAppartments() {
-            await axios.get('http://localhost:3001/hosts')
-            .then((response) => {
-                setApartments(response.data)
-            })
-            .catch((error) => {
+        async function getAppartments() {
+            try {
+                const response = await axios.get('http://localhost:3001/hosts');
+                setApartments(response.data);
+            } catch (error) {
                 console.log(error);
-            });
-
+            }
         }
-
+    
         getAppartments();
         setFilteredApartments(filterApartments());
-    }, [],filters);
+    }, [filters]);
+ 
 
 
 
