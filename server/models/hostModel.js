@@ -33,9 +33,9 @@ const validHostFunc =(_bodyData)=>{
         currentlyAvailable:Joi.boolean().required(),
         isAccessible:Joi.boolean().required(),
         payment:Joi.boolean().required(),
-        notes:Joi.string().required(),
+        notes:Joi.string(),
         phone:Joi.string().required(),
-        whatsapp:Joi.boolean().required(),
+        whatsapp:Joi.boolean(),
         email:Joi.string().required(),
         password: Joi.string().required()
     })
