@@ -32,7 +32,6 @@ function HomePage() {
           <p class="card-text">כאן תוכל למצוא את המארח המתאים בדיוק לצרכך, הוא מחכה רק לך!</p>
           <button type="button" onClick={moveToguestMode}>
             Guset
-
           </button>
           </div>
       </div>
