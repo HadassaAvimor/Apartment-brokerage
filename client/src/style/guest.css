@@ -3,7 +3,6 @@
   background-color: rgb(247, 247, 247);
   height: 100%;
   text-align: center;
-  width: 30%;
 }
 
 .apartment-filter{
@@ -62,11 +61,11 @@
 }
 
 /* Media query to switch to horizontal layout for larger screens */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .table{
     display: table-row;
   }
-}
+} */
 tr{
   background-color: #fff;
   /* background-color: #ffffff; */
