@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../style/guest.css'
 import axios from 'axios';
 import { Button, Collapse } from 'react-bootstrap';
+import img1 from '../images/img1.jpg';
 
 
 function Guest() {
@@ -115,7 +116,7 @@ function Guest() {
 
 
     return (
-        <>
+        <div className='all-page'>
             <div className="container" dir="rtl">
                 <div className="apartment-filter">
                     <table class="table" style={{textAlign: "center"}}>
@@ -243,7 +244,7 @@ function Guest() {
                     {/* </div> */}
                 </div >
             </div >
-        </>);
+        </div>);
 }
 
 export default Guest;

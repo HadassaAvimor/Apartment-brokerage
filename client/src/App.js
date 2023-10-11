@@ -9,6 +9,7 @@ import Login from './loginWithAuth/Login';
 import { HomePage } from './homePage/homePage';
 import { Header } from './Header';
 // import Update from './host/update';
+import Footer from './Footer'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         </Router>
 
       </Provider>
+      <Footer></Footer>
 </>
   );
 }

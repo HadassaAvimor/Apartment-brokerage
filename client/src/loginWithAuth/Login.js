@@ -126,8 +126,6 @@ function Login() {
                                                             שם משתמש או סיסמא שגויים, נסה שוב
                                                         </small>}
                                                 </div>
-
-                                                <a className="small text-muted" href="">שכחת סיסמה?</a>
                                                 <p className="mb-5 pb-lg-2" style={{ "color": "#393f81" }}>אין לך חשבון?<Link to="/host">הרשם כאן</Link></p>
                                             </form>
                                         </div>
