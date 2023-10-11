@@ -59,9 +59,7 @@ function Host() {
     return (
         <>
             <div class="wrap">
-            <header>
-                <Header></Header>
-            </header>
+
 
             <div dir="rtl">
                 <div class="row g-0">

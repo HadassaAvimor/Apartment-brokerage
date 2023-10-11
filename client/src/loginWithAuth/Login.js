@@ -15,27 +15,30 @@ import * as yup from "yup";
 import { userLogin } from "../redux/actions/userAction";
 import { useSelector, useDispatch } from "react-redux";
 import { setTokens } from "./TokenService";
+import img1 from "../images/img1.jpg";
+import { Link } from "react-router-dom";
+
 function Login() {
-    const url = "http://localhost:3001/auth/login";
+    const baseUrl = process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
     let user = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
     const [centredModal, setCentredModal] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [UserAuthentication, setUserAuthentication] = useState(true);
 
     const toggleShow = () => setCentredModal(!centredModal);
 
     useEffect(() => {
         dispatch(userLogin({}));
-        console.log("useEffect");
         setCentredModal(!centredModal);
     }, [])
 
     const schema = yup.object().shape({
-        email: yup.string().email("כתובת מייל לא תקינה").required("נא הזן.י כתובת מייל"),
+        email: yup.string().email("כתובת מייל לא תקינה").required("נא הזן/י כתובת מייל"),
         password: yup
-            .string().required("נא הזן.י סיסמא")
+            .string().required("נא הזן/י סיסמא")
     });
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -44,7 +47,7 @@ function Login() {
 
 
     const onSubmitHandler = (data) => {
-        axios.post(url,data, {
+        axios.post(`${baseUrl}/auth/login`,data, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -55,50 +58,86 @@ function Login() {
                         try {
                             dispatch(userLogin(response.data.user));
                             setTokens(response.data.token);
-                            navigate('/host');
+                            navigate('/updateHost');
                         }
                         catch (e) {
                             console.log(e);
                         }
                     }
                     else {
-                        { document.getElementById('errorMassege').hidden = false }
+                        setUserAuthentication(true)
                     }
                 }
             })
             .catch(error => {
-                { document.getElementById('errorMassege').hidden = false }
+                setUserAuthentication(false)
+
             })
     }
 
     return (
         <>
-            <MDBModal className='login-modal' tabIndex='-1' show={centredModal} staticBackdrop={Login} /*setShow={setCentredModal}*/>
-                <MDBModalDialog centered>
-                    <MDBModalContent>
-                        <MDBModalBody className='login-body' >
-                            <form onSubmit={handleSubmit(onSubmitHandler)}>
-                                <input className='login-input mail-icom' placeholder='כתובת מייל' type="email"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    {...register('email')}>
-                                </input>
-                                <p style={{ "color": "red" }}>{errors.email?.message}</p>
-                                <input className='login-input lock-icom' placeholder='סיסמא' type='password'
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    {...register('password')}>
-                                </input>
-                                <p style={{ "color": "red" }}>{errors.password?.message}</p>
-                                <p style={{ "color": "red" }} id='errorMassege' hidden='true'>כתובת מייל או סיסמא שגויים</p>
-                                <br></br>
-                                <a href='https://www.google.com/search?q=%D7%AA%D7%A8%D7%92%D7%95%D7%9E%D7%95%D7%9F&rlz=1C1SQJL_iwIL974IL974&oq=&aqs=chrome.2.35i39i362l6j46i39i362j35i39i362.490596j0j7&sourceid=chrome&ie=UTF-8'>שכחת סיסמא?</a>
-                                <br></br>
-                                <MDBBtn type='submit' className='login-connect'>התחברות</MDBBtn>
-                            </form>
-                        </MDBModalBody>
-                    </MDBModalContent>
-                </MDBModalDialog>
-            </MDBModal >
+                <div className="container py-5 h-80">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col col-xl-10">
+                            <div className="card" style={{ "borderRadius": "1rem" }}>
+                                <div className="row g-0">
+                                    <div className="col-md-6 col-lg-5 d-none d-md-block">
+                                        <img src={img1}
+                                            alt="login form" className="img-fluid" style={{ "borderRadius": "1rem 0 0 1rem" }} />
+                                    </div>
+                                    <div className="col-md-6 col-lg-7 d-flex align-items-center">
+                                        <div className="card-body p-4 p-lg-5 text-black">
+
+                                            <form onSubmit={handleSubmit(onSubmitHandler)}>
+                                                <h5 className="fw-normal mb-3 pb-3" style={{ "letterSpacing": "1px" }}>הכנס לחשבונך</h5>
+
+                                                <div className="form-outline mb-4">
+                                                    <input id="form2Example17" className="form-control form-control-lg"
+                                                        type="email"
+                                                        name="email"
+                                                        onChange={(e) => setEmail(e.target.value)}
+                                                        {...register('email')}
+                                                    />
+                                                    <small className="text-danger">
+                                                        {errors?.email && errors.email.message}
+                                                    </small>
+                                                    <label className="form-label" for="form2Example17">כתובת מייל</label>
+                                                </div>
+
+                                                <div className="form-outline mb-4">
+                                                    <input id="form2Example27" className="form-control form-control-lg"
+                                                        type="password"
+                                                        name="password"
+                                                        onChange={(e) => setPassword(e.target.value)}
+                                                        {...register('password')}
+                                                    />
+                                                    <small className="text-danger">
+                                                        {errors?.password && errors.password.message}
+                                                    </small>
+                                                    <label className="form-label" for="form2Example27">סיסמה</label>
+                                                </div>
+                                                <div className="pt-1 mb-4">
+                                                    <button className="btn btn-dark btn-lg btn-block">כניסה</button>
+                                                    {UserAuthentication == false &&
+                                                        <small className="text-danger">
+                                                            שם משתמש או סיסמא שגויים, נסה שוב
+                                                        </small>}
+                                                </div>
+
+                                                <a className="small text-muted" href="">שכחת סיסמה?</a>
+                                                <p className="mb-5 pb-lg-2" style={{ "color": "#393f81" }}>אין לך חשבון?<Link to="/host">הרשם כאן</Link></p>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {/* <Footer></Footer> */}
         </>
     );
 }
+
 export default Login;

@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Host from './host/Host';
 import Guest from './GuestComponents/Guest';
 import Login from './loginWithAuth/Login';
-// import { HomePage } from './homePage/homePage';
+import { HomePage } from './homePage/homePage';
 import { Header } from './Header';
+import UpdateHost from './updateHost/UpdateHost';
 // import Update from './host/update';
-import HomePage from './homePage/homePage';
 
 
 function App() {
@@ -25,6 +25,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/host" element={<Host />} />
             <Route path="/guest" element={<Guest />} />
+            <Route path="/updateHost" element={<UpdateHost />} />
+
           </Routes>
 
         </Router>

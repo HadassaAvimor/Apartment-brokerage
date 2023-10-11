@@ -37,7 +37,7 @@ function Guest() {
     useEffect(() => {
         async function getAppartments() {
             try {
-                const response = await axios.get(`${baseUrl}hosts`);
+                const response = await axios.get(`${baseUrl}/hosts`);
                 setApartments(response.data);
             } catch (error) {
                 console.log(error);
