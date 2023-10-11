@@ -16,7 +16,7 @@ import { userLogin } from "../redux/actions/userAction";
 import { useSelector, useDispatch } from "react-redux";
 import { setTokens } from "./TokenService";
 function Login() {
-    const url = "http://localhost:3001/auth/login";
+    const baseUrl = process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
     let user = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ function Login() {
 
 
     const onSubmitHandler = (data) => {
-        axios.post(url,data, {
+        axios.post(`${baseUrl}/auth/login`,data, {
             headers: {
                 'Content-Type': 'application/json'
             }
