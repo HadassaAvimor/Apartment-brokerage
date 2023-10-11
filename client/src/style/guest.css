@@ -2,15 +2,78 @@
   margin-bottom: 4rem;
   background-color: rgb(247, 247, 247);
   height: 100%;
+  text-align: center;
+  width: 30%;
 }
 
-.card-title {
-  font-weight: 900;
-  flex-grow: 1;
+.apartment-filter{
+  text-align: center;
 }
-.card-description {
-  font-size: 13px;
+.apartments{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items: flex-start;
+  height: 0%
+}
 
-  overflow: hidden;
-  height: 100px;
+.card{
+  flex-basis:30%;
+  background-color: #fff; 
+  position: relative; /* Set the position to relative for proper positioning */
+
+}
+
+.my-collapse-content {
+  position: absolute; /* Position the content absolutely */
+  z-index: 999; /* Set a high z-index value to ensure it appears above other elements */
+  background-color: #fff; /* Set a background color if needed */
+  transform-origin: top;
+  transform: scaleY(0); /* Start with the content collapsed */
+  transition: transform 0.3s ease-in-out; /* Adjust the animation duration as needed */
+}
+.my-collapse-content.collapse.show {
+  transform: scaleY(1); /* Expand the content when the collapse is shown */
+}
+
+.collapsible-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff; /* Set the background color as needed */
+  z-index: 999; /* Ensure it appears above the card */
+  overflow: auto; /* Add scrollbars if necessary */
+}
+
+@media (max-width: 768px) {
+  .card {
+      /* Override the display property for mobile screens */
+      flex-basis:90%; 
+      /* Add any other mobile-specific styles here */
+  }
+}
+
+.apartment-filter table tbody tr {
+  /* display: block; */
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+/* Media query to switch to horizontal layout for larger screens */
+@media (min-width: 768px) {
+  .table{
+    display: table-row;
+  }
+}
+tr{
+  background-color: #fff;
+  /* background-color: #ffffff; */
+
+  /* style={{backgroundColor: "white"}} */
+}
+span{
+  background-color: #fff;
+  /* style={{backgroundColor: "white"}} */
 }

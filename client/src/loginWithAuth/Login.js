@@ -48,6 +48,7 @@ function Login() {
 
 
     const onSubmitHandler = (data) => {
+        console.log("data", data);
         axios.post(`${baseUrl}/auth/login`,data, {
             headers: {
                 'Content-Type': 'application/json'

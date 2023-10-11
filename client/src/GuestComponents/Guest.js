@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../style/guest.css'
 import axios from 'axios';
+import { Button, Collapse } from 'react-bootstrap';
 
 
 function Guest() {
@@ -8,6 +9,9 @@ function Guest() {
     const baseUrl = process.env.REACT_APP_API_URL;
     const [apartments, setApartments] = useState([]);
     const [filteredApartments, setFilteredApartments] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [openIndex, setOpenIndex] = useState();
+    const [r, setR] = useState(false);
 
     const [filters, setFilters] = useState({
         city: '',
@@ -19,35 +23,34 @@ function Guest() {
         accessible: false, // Set default value to false
     });
 
-    // useEffect(() => {
-    //   async function getAppartments() {
-    //         await axios.get('http://localhost:3001/hosts')
-    //         .then((response) => {
-    //             setApartments(response.data)
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         });
+    async function getAppartments() {
+        await axios.get(`${baseUrl}/hosts`)
+            .then((response) => {
+                setApartments(response.data)
 
-    //     }
-
-    //     getAppartments();
-    //     setFilteredApartments(filterApartments());
-    // }, [],filters);
-    useEffect(() => {
-        async function getAppartments() {
-            try {
-                const response = await axios.get(`${baseUrl}/hosts`);
-                setApartments(response.data);
-            } catch (error) {
+            })
+            .catch((error) => {
                 console.log(error);
-            }
-        }
-    
+            });
+
+    }
+
+    useEffect(() => {
         getAppartments();
         setFilteredApartments(filterApartments());
+    }, [], filters);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let temp = await getAppartments();
+            setTimeout(() => {
+                setR(true);
+            }, 0);
+        }
+        fetchData();
+        setFilteredApartments(filterApartments());
     }, [filters]);
- 
+
 
 
 
@@ -100,99 +103,147 @@ function Guest() {
         setFilteredApartments(filteredApartments);
         return filteredApartments;
     };
+    function handleClick(index) {
+        if (open == false || index == openIndex) {
+            setOpen(!open);
+
+        }
+        setOpenIndex(index);
+        console.log("open", openIndex);
+    }
 
 
 
     return (
-        <div className="apartment-filter">
+        <>
+            <div className="container" dir="rtl">
+                <div className="apartment-filter">
+                    <table class="table" style={{textAlign: "center"}}>
+                        <thead >
+                            <tr>
+                                <th scope="col">עיר</th>
+                                <th scope="col">יחידת אירוח</th>
+                                <th scope="col">זמינה כרגע</th>
+                                <th scope="col">יש ממ"ד</th>
+                                <th scope="col">מספר מיטות</th>
+                                <th scope="col">מספר עריסות</th>
+                                <th scope="col">דירה נגישה</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                    <td><input
+                        id="city"
+                        name="city"
+                        onChange={handleInputChange}
+                    /></td>
+                    <td><input
+                        id="accommodationaUnit"
+                        name="accommodationUnit"
+                        type="checkbox"
+                        onChange={handleInputChange}
+                    /></td>
+                    <td><input
+                        id="available"
+                        name="available"
+                        type="checkbox"
+                        onChange={handleInputChange}
+                    /></td>
+                    <td><input
+                        id="hasMMD"
+                        name="hasMMD"
+                        type="checkbox"
+                        onChange={handleInputChange}
+                    /></td>
+                    <td><input
+                        id="beds"
+                        name="beds"
+                        type="number"
+                        min="0"
+                        onChange={handleInputChange}
+                    /></td>
+                    <td><input
+                        id="cradles"
+                        name="cradles"
+                        type="number"
+                        min="0"
+                        onChange={handleInputChange}
+                    /></td>
+                    <td><input
+                        id="accessible"
+                        name="accessible"
+                        type="checkbox"
+                        onChange={handleInputChange}
+                    /></td>
+                    </tbody>
+                    </table>
+                    <button type="button" onClick={handleInputChange} class="btn btn-warning">לכל הדירות</button>
+                </div>
 
-            <label for="city">עיר</label>
-            <input
-                id="city"
-                name="city"
-                onChange={handleInputChange}
-            />
-
-            <label for="accommodationaUnit">יחידת אירוח</label>
-            <input
-                id="accommodationaUnit"
-                name="accommodationUnit"
-                type="checkbox"
-                onChange={handleInputChange}
-            />
-
-            <label for="available">זמינה כרגע</label>
-            <input
-                id="available"
-                name="available"
-                type="checkbox"
-                onChange={handleInputChange}
-            />
-
-            <label for="hasMMD">יש ממ"ד</label>
-            <input
-                id="hasMMD"
-                name="hasMMD"
-                type="checkbox"
-                onChange={handleInputChange}
-            />
-
-            <label for="beds">מספר מיטות</label>
-            <input
-                id="beds"
-                name="beds"
-                type="number"
-                onChange={handleInputChange}
-            />
-
-            <label for="cradles">מספר עריסות</label>
-            <input
-                id="cradles"
-                name="cradles"
-                type="number"
-                onChange={handleInputChange}
-            />
-
-            <label for="accessible">דירה נגישה</label>
-            <input
-                id="accessible"
-                name="accessible"
-                type="checkbox"
-                onChange={handleInputChange}
-            />
-
-
-
-
-
-            {/* <button onClick={filterApartments}>Apply Filters</button> */}
-
-
-            <h1>כל הדירות</h1>
-            <div className='d-flex p-2 bd-highlight'>
-
-                {filteredApartments.map((item, index) => (
-                    <div key={index} className='card'>
-                        <h2 className='card-title'>שם: {item.name}</h2>
-                        <p>עיר: {item.city}</p>
-                        <p>יחידת אירוח: {item.accommodationUnit ? 'כן' : 'לא'}</p>
-                        <p>מספר מיטות: {item.numOfBeds}</p>
-                        <p>מספר מזרנים: {item.numOfMattresses}</p>
-                        <p>מספר עריסות: {item.numOfCribs}</p>
-                        <p>יש ממ"ד: {item.hasMMD ? 'כן' : 'לא'}</p>
-                        <p>פנוי כרגע: {item.currentlyAvailable ? 'כן' : 'לא'}</p>
-                        <p>נגיש: {item.isAccessible ? 'כן' : 'לא'}</p>
-                        <p>בתשלום: {item.payment ? 'כן' : 'לא'}</p>
-                        <p>הערות: {item.notes}</p>
-                        <p>טלפון: {item.phone}</p>
-                        <p>האם יש ווצאפ: {item.whatsapp ? 'כן' : 'לא'}</p>
-                        <p>מייל: {item.email}</p>
-                    </div>
-                ))}
-            </div>
-
-        </div>
-    );
+                <br></br>
+                <br></br>
+                <div className="apartments">
+                    {r &&
+                        filteredApartments.map((d, i) => {
+                            return (
+                                <>
+                                    <div className="card">
+                                        <table dir='rtl'>
+                                            <tbody>
+                                                <tr scope="col"><span style={{ fontWeight: 'bold' }}> שם:  </span>{d.name}</tr>
+                                                <tr scope="col"><span style={{ fontWeight: 'bold' }}> טלפון:  </span>{d.phone}</tr>
+                                                <tr scope="col"><span style={{ fontWeight: 'bold' }}> עיר  </span>{d.city}</tr>
+                                            </tbody>
+                                        </table>
+                                        <div style={{ "margin": "20px", backgroundColor:"white" }}>
+                                            <Button variant="Light" style={{background: "white", border: "2px solid #95532f", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}
+                                                onClick={() => handleClick(i)} >
+                                                פרטים נוספים
+                                            </Button>
+                                        </div>
+                                        {/* </div> */}
+                                        <br></br>
+                                        <div className="card-header">
+                                            <Collapse key={i} in={open && openIndex == i}>
+                                                <div id="collapsePanel" dir='rtl'>
+                                                    <table class="table table-striped" dir='rtl'>
+                                                        <thead>
+                                                            <tr><th scope="row">יחידת אירוח</th>
+                                                                <td>{d.accommodationUnit ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">מיטות</th>
+                                                                <td>{d.numOfBeds}</td></tr>
+                                                            <tr><th scope="row">מזרנים</th>
+                                                                <td>{d.numOfMattresses}</td></tr>
+                                                            <tr><th scope="row">עריסות</th>
+                                                                <td>{d.numOfCribs}</td></tr>
+                                                            <tr><th scope="row">פנוי כרגע?</th>
+                                                                <td>{d.hasMMD ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">יש ממ"ד</th>
+                                                                <td>{d.currentlyAvailable ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">נגיש?</th>
+                                                                <td>{d.isAccessible ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">בתשלום?</th>
+                                                                <td>{d.thayment ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">טלפון</th>
+                                                                <td>{d.thhone}</td></tr>
+                                                            <tr><th scope="row">וואטצאפ</th>
+                                                                <td>{d.whatsathth ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">מייל</th>
+                                                                <td>{d.email}</td></tr>
+                                                        </thead>
+                                                    </table>
+                                                    <p>הערות: {d.notes}</p>
+                                                </div>
+                                            </Collapse>
+                                        </div >
+                                    </div>
+                                </>
+                            )
+                        })
+                    }
+                    {/* </div> */}
+                </div >
+            </div >
+        </>);
 }
 
 export default Guest;
