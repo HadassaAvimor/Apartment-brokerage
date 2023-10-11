@@ -19,22 +19,24 @@ router.get(`/:id`, async (req, res) => {
 router.use(auth);
 
 
-router.put(`/:name/:email`, async (req, res, next) => {
-    const existingUser = await hostService.getByNameAndEmail(req.params.name,req.params.email);
-        if (!existingUser) {
-            return res.status(404).json({ error: 'User not found' });
-        }
+router.put(`/`, async (req, res, next) => {
+
     encryptedPassword = await bcrypt.hash(req.body.password, 10);
     user = req.body;
     user.password = encryptedPassword;
-    let result = await hostService.update(req.params.id, user);
+    const existingUser = await hostService.getByEmailAndPassword(user.email);
+    if (!existingUser) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+    extractedId = existingUser[0]._id
+    let result = await hostService.update(extractedId.toString(), user);
     if (result.error) {
         next(result.error);
     }
     else {
         res.send(result);
     }
-    
+
 });
 
 router.delete(`/:id`, async (req, res, next) => {
@@ -44,7 +46,8 @@ router.delete(`/:id`, async (req, res, next) => {
     }
     else {
         res.send(result.message);
-    }});
+    }
+});
 
 router.use(errorMW);
 router.use(logger);
