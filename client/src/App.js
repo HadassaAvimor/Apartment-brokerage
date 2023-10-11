@@ -9,7 +9,6 @@ import Login from './loginWithAuth/Login';
 import { HomePage } from './homePage/homePage';
 import { Header } from './Header';
 // import Update from './host/update';
-import HomePage from './homePage/homePage';
 
 
 function App() {
