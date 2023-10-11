@@ -19,8 +19,8 @@ router.get(`/:id`, async (req, res) => {
 router.use(auth);
 
 
-router.put(`/:id`, async (req, res, next) => {
-    const existingUser = await hostService.getById(req.params.id);
+router.put(`/:name/:email`, async (req, res, next) => {
+    const existingUser = await hostService.getByNameAndEmail(req.params.name,req.params.email);
         if (!existingUser) {
             return res.status(404).json({ error: 'User not found' });
         }
