@@ -12,7 +12,7 @@ import { useState } from "react";
 function UpdateHost() {
 
     const baseUrl = process.env.REACT_APP_API_URL;
-    const hostUrl = `${baseUrl}/auth/register`;
+    const hostUrl = `${baseUrl}/hosts`;
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const schema = yup.object().shape({
         id: yup.string(),
@@ -41,6 +41,7 @@ function UpdateHost() {
     };
 
     const onSubmit = async (data) => {
+        console.log(data);
         await axios.put(hostUrl, data, config)
             .then(response => {
                 if (response.status >= 200 && response.status < 300) {
