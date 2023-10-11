@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../style/guest.css'
-function Guest() {
 import axios from 'axios';
 
 
