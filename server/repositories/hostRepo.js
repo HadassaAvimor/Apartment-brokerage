@@ -13,8 +13,8 @@ module.exports = class HostRepo {
         return items;
     }
 
-    async getById(id) {
-        let item = await HostModel.findById(id, { password: 0 });
+    async getByEmailAndPassword(email) {
+        let item = await HostModel.find({email:email}, { password: 0 });
         return item;
     }
 
