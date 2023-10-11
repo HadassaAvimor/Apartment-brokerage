@@ -11,8 +11,8 @@ module.exports = class HostService {
         return await repo.getAll();
     }
 
-    async getById(id) {
-        return repo.getById(id)
+    async getByEmailAndPassword(email) {
+        return repo.getByEmailAndPassword(email)
     }
 
     async insert(data) {
