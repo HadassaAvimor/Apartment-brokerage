@@ -162,11 +162,10 @@ function Guest() {
                                         <table dir='rtl'>
                                             <tbody>
                                                 <tr scope="col"><span style={{ fontWeight: 'bold' }}> עיר  </span>{d.city}</tr>
-                                                <tr scope="col"><span style={{ fontWeight: 'bold' }}> מספר נפשות:  </span>{d.numOfBeds + d.numOfMattresses}</tr>
                                             </tbody>
                                         </table>
-                                        <div style={{ "margin": "20px", backgroundColor: "white" }}>
-                                            <Button variant="Light" style={{ background: "white", border: "2px solid #95532F", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}
+                                        <div style={{ "margin": "20px", backgroundColor:"white" }}>
+                                            <Button variant="Light" style={{background: "white", border: "2px solid #95532f", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}
                                                 onClick={() => handleClick(i)} >
                                                 פרטים נוספים
                                             </Button>
@@ -200,8 +199,6 @@ function Guest() {
                                                                 <td>{d.whatsapp ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">מייל</th>
                                                                 <td>{d.email}</td></tr>
-                                                            <tr><th scope="row">הערות</th>
-                                                                <td>{d.notes}</td></tr>
                                                         </thead>
                                                     </table>
                                                 </div>
