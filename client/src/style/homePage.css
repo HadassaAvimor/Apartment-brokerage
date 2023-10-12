@@ -1,5 +1,6 @@
 *{
     margin: auto;
+    background-color: rgb(255, 244, 231);
 }
 .cards{
     display: flex;
@@ -12,3 +13,14 @@
         /* Add any other mobile-specific styles here */
     }
 }
+
+.card{
+    border-style: solid;
+    border-color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease-in-out; /* Add a smooth transition effect */
+    }
+
+    .card:hover {
+        transform: scale(1.1); /* Increase the size on hover */
+    }
