@@ -9,7 +9,7 @@
 .apartment-filter{
   text-align: center;
 }
-/* 
+
 .apartments{
   display:flex;
   flex-wrap:wrap;
@@ -30,7 +30,7 @@
   transition: transform 0.3s ease-in-out; 
 }
 
-
+/* 
 @media (max-width: 768px) {
   .card {
       flex-basis:90%; 

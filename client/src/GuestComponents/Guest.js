@@ -21,6 +21,7 @@ function Guest() {
     async function getAppartments() {
         await axios.get(`${baseUrl}/hosts`)
             .then((response) => {
+                console.log(response.data);
                 setApartments(response.data)
             })
             .catch((error) => {
