@@ -6,6 +6,8 @@ import { getToken } from "../loginWithAuth/TokenService";
 import { MDBContainer } from "mdb-react-ui-kit";
 import { useForm } from "react-hook-form";
 import "./Host.css"
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -14,6 +16,8 @@ function Host() {
     const baseUrl = process.env.REACT_APP_API_URL;
     console.log(baseUrl);
     const hostUrl = `${baseUrl}/auth/register`;
+    const isSendSuccessfuly = useRef(false);
+    const navigate = useNavigate();
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const schema = yup.object().shape({
@@ -31,7 +35,7 @@ function Host() {
         notes: yup.string(),
         phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
         whatsapp: yup.bool().required("נא לסמן"),
-        email: yup.string(),
+        email: yup.string().default(' '),  
         password: yup.string().min(5).max(12).required()
     });
 
@@ -48,6 +52,11 @@ function Host() {
             .then(response => {
                 if (response.status >= 200 && response.status < 300) {
                     console.log(response.data);
+                    isSendSuccessfuly.current = true;
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 3000);
+                    
                 }
 
             })
@@ -266,6 +275,7 @@ function Host() {
                                         id="form3Example1m"
                                         class="form-control"
                                         name="notes"
+                                        value={" "}
                                         {...register('notes')} />
                                     <label for="form3Example1m">הערות</label>
                                     <small class="text-danger">
@@ -277,6 +287,10 @@ function Host() {
 
                         </>
                         <input class="btn btn-outline-dark" type="submit"></input>
+
+                       {isSendSuccessfuly.current == true?<h3>
+                        הדירה נוספה בהצלחה. תודה רבה! תוכל לעדכן את הפרטים בכל עת.
+                        </h3>:<></>}
                     </form>
                 </div>
             </div >
