@@ -32,7 +32,7 @@ function UpdateHost() {
     });
     const user = useSelector((state) => state.userReducer);
 
-
+    console.log(user);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
@@ -41,7 +41,8 @@ function UpdateHost() {
     };
 
     const onSubmit = async (data) => {
-        console.log(data);
+        data.password = user.password;
+        data.email = user.email;
         await axios.put(hostUrl, data, config)
             .then(response => {
                 if (response.status >= 200 && response.status < 300) {
@@ -57,236 +58,216 @@ function UpdateHost() {
     return (
         <>
             <div class="wrap">
+                <header>
+                    <div style={{ height: "8vh" }}></div>
+                </header>
+
+                <div className="container" style={{ width: "50vw", marginTop: "9vh" }}>
+                    <form className="form" onSubmit={handleSubmit(onSubmit)} style={{ width: "40vw", marginLeft: "6vw", marginRight: "3vw", padding: "10vh" }}>
+                        <>
+                            <div style={{ "display": "flex" }}>
+
+                                <div class="form-group">
+                                    <input class="form-control"
+                                        type="text"
+                                        name="city"
+                                        {...register('city')}
+                                        defaultValue={user.city}
+                                        placeholder={user.city}
+                                    />
+                                    <label id="label">עיר</label>
+                                    <small class="text-danger">
+                                        {errors?.city && errors.city.message}
+                                    </small>
+
+                                    <input class="form-control" type="text" name="name" id="name" {...register('name')}
+                                        defaultValue={user.name}
+                                        placeholder={user.name} />
+                                    <label for="name" id="label">שם מלא</label>
+                                    <small class="text-danger">
+                                        {errors?.name && errors.name.message}
+                                    </small>
+                                </div>
+
+                            </div>
 
 
-                <div dir="rtl">
-                    <div class="row g-0">
-                        <div class="card-body p-md-5 text-black">
-                            <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                                <>
-                                    <div style={{ "display": "flex" }}>
+                            <div class="form-row">
+
+                                <div class="form-group">
+                                    <div class="radio-row">
+                                        <label for="accommodationUnit-true" >כן</label>
+                                        <input type="radio" id="accommodationUnit-true" value="true" name="accommodationUnit" {...register('accommodationUnit')} />
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="form3Example1m">שם מלא</label>
-                                            <input id="form3Example1m" class="form-control"
-                                                type="text"
-                                                name="name"
-                                                defaultValue={user.name}
-                                                {...register('name')}
-
-                                            />
-                                            <small class="text-danger">
-                                                {errors?.name && errors.name.message}
-                                            </small>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="form3Example1m">עיר</label>
-                                            <input id="form3Example1m" class="form-control"
-                                                type="text"
-                                                name="city"
-                                                {...register('city')}
-                                                defaultValue={user.city}
-
-                                                placeholder={user.city}
-                                            />
-                                            <small class="text-danger">
-                                                {errors?.city && errors.city.message}
-                                            </small>
-                                        </div>
+                                    <div class="radio-row">
+                                        <label for="accommodationUnit-false" >לא</label>
+                                        <input type="radio" id="accommodationUnit-false" value="false" name="accommodationUnit" {...register('accommodationUnit')} />
                                     </div>
+                                    <label for="accommodationUnit" id="label">כניסה נפרדת</label>
+                                    <small class="text-danger">
+                                        {errors?.accommodationUnit && errors.accommodationUnit.message}
+                                    </small>
 
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="form3Example1m">האם יש כניסה נפרדת?</label>
-                                            <br />
-                                            <label for="form3Example1m">כן</label>
-                                            <input type="radio" value="true" name="accommodationUnit"
-                                                {...register('accommodationUnit')}
-                                                defaultValue={user.accommodationUnit} />
-
-                                            <br />
-                                            <label for="form3Example1m">לא</label>
-                                            <input type="radio" value="false" name="accommodationUnit"
-                                                {...register('accommodationUnit')}
-                                                defaultValue={user.accommodationUnit} />
-                                            <small class="text-danger">
-                                                {errors?.accommodationUnit && errors.accommodationUnit.message}
-                                            </small>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label class="form-label" for="form3Example1m">האם יש מרחב מוגן?</label>
-                                            <br />
-                                            <label class="form-label" for="form3Example1m">כן</label>
-                                            <input type="radio" value="true" name="hasMMD"
-                                                {...register('hasMMD')}
-                                                defaultValue={user.hasMMD}
-                                            />
-                                            <br />
-                                            <label class="form-label" for="form3Example1m">לא</label>
-                                            <input type="radio" value="false" name="hasMMD"
-                                                {...register('hasMMD')}
-                                                defaultValue={user.hasMMD}
-                                            />
-                                            <small class="text-danger">
-                                                {errors?.hasMMD && errors.hasMMD.message}
-                                            </small>
-                                        </div>
+                                    <div class="radio-row">
+                                        <label for="hasMMD-true">כן</label>
+                                        <input type="radio" id="hasMMD-true" value="true" name="hasMMD" {...register('hasMMD')} />
                                     </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-2">
-                                            <label for="form3Example1m">מספר מיטות</label>
-                                            <input id="form3Example1m" class="form-control"
-                                                type="number"
-                                                name="numOfBeds"
-                                                min="0"
-                                                {...register('numOfBeds')}
-                                                defaultValue={user.numOfBeds}
-                                                placeholder={user.numOfBeds}
-                                            />
-                                            <small class="text-danger">
-                                                {errors?.numOfBeds && errors.numOfBeds.message}
-                                            </small>
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label for="form3Example1m">מספר מזרנים</label>
-                                            <input id="form3Example1m" class="form-control"
-                                                type="number"
-                                                name="numOfMattresses"
-                                                min="0"
-                                                {...register('numOfMattresses')}
-                                                defaultValue={user.numOfMattresses}
-                                                placeholder={user.numOfMattresses}
-                                            />
-                                            <small class="text-danger">
-                                                {errors?.numOfMattresses && errors.numOfMattresses.message}
-                                            </small>
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label for="form3Example1m">מספר עריסות</label>
-                                            <input id="form3Example1m" class="form-control"
-                                                type="number"
-                                                name="numOfCribs"
-                                                min="0"
-                                                {...register('numOfCribs')}
-                                                defaultValue={user.numOfCribs}
-                                                placeholder={user.numOfCribs}
-                                            />
-                                            <small class="text-danger">
-                                                {errors?.numOfCribs && errors.numOfCribs.message}
-                                            </small>
-                                        </div>
+                                    <div class="radio-row">
+                                        <label for="hasMMD-false">לא</label>
+                                        <input type="radio" id="hasMMD-false" value="false" name="hasMMD" {...register('hasMMD')} />
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-2">
-                                            <label class="form-label" for="form3Example1m">האם זמין כרגע?</label>
-                                            <br />
-                                            <label class="form-label" for="form3Example1m">כן</label>
-                                            <input type="radio" value="true" name="currentlyAvailable"
-                                                {...register('currentlyAvailable')} />
-                                            <br />
-                                            <label class="form-label" for="form3Example1m">לא</label>
-                                            <input type="radio" value="false" name="currentlyAvailable"
-                                                {...register('currentlyAvailable')} />
-                                            <small class="text-danger">
-                                                {errors?.currentlyAvailable && errors.currentlyAvailable.message}
-                                            </small>
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label class="form-label" for="form3Example1m">האם המקום נגיש?</label>
-                                            <br />
+                                    <label class="form-label" for="hasMMD" id="label">מרחב מוגן</label>
+                                    <small class="text-danger">
+                                        {errors?.hasMMD && errors.hasMMD.message}
+                                    </small>
+                                </div>
+                            </div>
 
-                                            <label class="form-label" for="form3Example1m">כן</label>
-
-                                            <input type="radio" value="true" name="isAccessible"
-                                                {...register('isAccessible')}
-                                            />
-                                            <br />
-                                            <label class="form-label" for="form3Example1m">לא</label>
-                                            <input type="radio" value="false" name="isAccessible"
-                                                {...register('isAccessible')}
-                                            />
-                                            <small class="text-danger">
-                                                {errors?.isAccessible && errors.isAccessible.message}
-                                            </small>
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label class="form-label" for="form3Example1m">האם בתשלום</label>
-                                            <br></br>
-                                            <label class="form-label" for="form3Example1m">כן</label>
-
-                                            <input type="radio" value="true" name="payment"
-                                                {...register('payment')} />
-                                            <br />
-                                            <label class="form-label" for="form3Example1m">לא</label>
-                                            <input type="radio" value="false" name="payment"
-                                                {...register('payment')}
-                                            />
-                                            <br></br>
-                                            <small class="text-danger">
-                                                {errors?.payment && errors.payment.message}
-                                            </small>
-                                        </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input class="form-control"
+                                        type="number"
+                                        name="numOfBeds"
+                                        min="0"
+                                        {...register('numOfBeds')}
+                                        defaultValue={user.numOfBeds}
+                                        placeholder={user.numOfBeds} />
+                                    <label>מספר מיטות</label>
+                                    <small class="text-danger">
+                                        {errors?.numOfBeds && errors.numOfBeds.message}
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control"
+                                        type="number"
+                                        name="numOfMattresses"
+                                        min="0"
+                                        {...register('numOfMattresses')}
+                                        defaultValue={user.numOfMattresses}
+                                        placeholder={user.numOfMattresses} />
+                                    <label >מספר מזרנים</label>
+                                    <small class="text-danger">
+                                        {errors?.numOfMattresses && errors.numOfMattresses.message}
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <input id="form3Example1m" class="form-control"
+                                        type="number"
+                                        name="numOfCribs"
+                                        min="0"
+                                        {...register('numOfCribs')}
+                                        defaultValue={user.numOfCribs}
+                                        placeholder={user.numOfCribs} />
+                                    <label for="form3Example1m">מספר עריסות</label>
+                                    <small class="text-danger">
+                                        {errors?.numOfCribs && errors.numOfCribs.message}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="radio-row">
+                                        <label for="currentlyAvailable-true">כן</label>
+                                        <input type="radio" id="currentlyAvailable-true" value="true" name="currentlyAvailable" {...register('currentlyAvailable')} />
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="form3Example1m">הערות</label>
-                                            <textarea
-                                                id="form3Example1m"
-                                                class="form-control"
-                                                name="notes"
-                                                {...register('notes')}
-                                                defaultValue={user.notes}
-                                                placeholder={user.notes} />
-                                            <small class="text-danger">
-                                                {errors?.isAccessible && errors.isAccessible.message}
-                                            </small>
-                                        </div>
+                                    <div class="radio-row">
+                                        <label for="currentlyAvailable-false">לא</label>
+                                        <input type="radio" id="currentlyAvailable-false" value="false" name="currentlyAvailable" {...register('currentlyAvailable')} />
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="form3Example1m">מספר טלפון</label>
-                                            <input
-                                                id="form3Example1m"
-                                                class="form-control"
-                                                type="text"
-                                                name="phone"
-                                                maxLength="10"
-                                                {...register('phone')}
-                                                defaultValue={user.phone}
-                                                placeholder={user.phone}
-                                            />
-                                            <small class="text-danger">
-                                                {errors?.phone && errors.phone.message}
-                                            </small>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label class="form-label" for="form3Example1m">האם יש ווצאפ?</label>
-                                            <br></br>
-                                            <label class="form-label" for="form3Example1m">כן</label>
+                                    <label class="form-label" for="currentlyAvailable" id="label"> זמין כרגע</label>
+                                    <small class="text-danger">
+                                        {errors?.currentlyAvailable && errors.currentlyAvailable.message}
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <div class="radio-row">
+                                        <label for="isAccessible-true">כן</label>
+                                        <input type="radio" id="isAccessible-true" value="true" name="isAccessible" {...register('isAccessible')} />
+                                    </div>
+                                    <div class="radio-row">
+                                        <label for="isAccessible-false">לא</label>
+                                        <input type="radio" id="isAccessible-false" value="false" name="isAccessible" {...register('isAccessible')} />
+                                    </div>
+                                    <label class="form-label" for="isAccessuble" id="label">מקום נגיש</label>
+                                    <small class="text-danger">
+                                        {errors?.isAccessible && errors.isAccessible.message}
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <div class="radio-row">
+                                        <label for="payment-true">כן</label>
+                                        <input type="radio" id="payment-true" value="true" name="payment" {...register('payment')} />
+                                    </div>
+                                    <div class="radio-row">
+                                        <label for="payment-false">לא</label>
+                                        <input type="radio" id="payment-false" value="false" name="payment" {...register('payment')} />
+                                    </div>
+                                    <label class="form-label" for="payment" id="label">בתשלום</label>
+                                    <small class="text-danger">
+                                        {errors?.payment && errors.payment.message}
+                                    </small>
+                                </div>
+                            </div>
 
-                                            <input type="radio" value="true" name="whatsapp"
-                                                {...register('whatsapp')}
-                                            />
-                                            <br></br>
-                                            <label class="form-label" for="form3Example1m">לא</label>
-                                            <input type="radio" value="false" name="whatsapp"
-                                                {...register('whatsapp')}
-                                            />
-                                            <br></br>
-                                            <small class="text-danger">
-                                                {errors?.whatsapp && errors.payment.whatsapp}
-                                            </small>
-                                        </div>
+                            <div class="form-row">
+                                <div class="form-group">
+
+                                    <div class="radio-row">
+                                        <label for="whatsapp-true">כן</label>
+                                        <input type="radio" id="whatsapp-true" value="true" name="whatsapp" {...register('whatsapp')} />
                                     </div>
-                                </>
-                                <input class="btn btn-outline-dark" type="submit"></input>
-                            </form>
-                        </div>
-                    </div >
-                </div ></div>
+                                    <div class="radio-row">
+                                        <label for="whatsapp-false">לא</label>
+                                        <input type="radio" id="whatsapp-false" value="false" name="whatsapp" {...register('whatsapp')} />
+                                    </div>
+                                    <label class="form-label" for="whatsapp" id="label">יש ווצאפ</label>
+                                    <br></br>
+
+                                    <small class="text-danger">
+                                        {errors?.whatsapp && errors.payment.whatsapp}
+                                    </small>
+                                    <input
+                                        id="form3Example1m"
+                                        class="form-control"
+                                        type="text"
+                                        name="phone"
+                                        maxLength="10"
+                                        {...register('phone')}
+                                        defaultValue={user.phone}
+                                        placeholder={user.phone}
+                                    />
+                                    <label for="form3Example1m" id="label">מספר טלפון</label>
+                                    <small class="text-danger">
+                                        {errors?.phone && errors.phone.message}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+
+                                <div class="form-group">
+                                    <textarea
+                                        id="form3Example1m"
+                                        class="form-control"
+                                        name="notes"
+                                        {...register('notes')}
+                                        defaultValue={user.notes}
+                                        placeholder={user.notes} />
+                                    <label for="form3Example1m">הערות</label>
+                                    <small class="text-danger">
+                                        {errors?.isAccessible && errors.isAccessible.message}
+                                    </small>
+                                </div>
+
+                            </div>
+
+                        </>
+                        <input class="btn btn-outline-dark" type="submit"></input>
+                    </form>
+                </div>
+            </div >
+
+
         </>);
 }
 export default UpdateHost;
