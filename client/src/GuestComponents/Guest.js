@@ -119,7 +119,7 @@ function Guest() {
         <div className='all-page'>
             <div className="container" dir="rtl">
                 <div className="apartment-filter">
-                    <table class="table" style={{textAlign: "center"}}>
+                    <table class="table" style={{ textAlign: "center" }}>
                         <thead >
                             <tr>
                                 <th scope="col">עיר</th>
@@ -131,51 +131,51 @@ function Guest() {
                                 <th scope="col">דירה נגישה</th>
                             </tr>
                         </thead>
-                    <tbody>
-                    <td><input
-                        id="city"
-                        name="city"
-                        onChange={handleInputChange}
-                    /></td>
-                    <td><input
-                        id="accommodationaUnit"
-                        name="accommodationUnit"
-                        type="checkbox"
-                        onChange={handleInputChange}
-                    /></td>
-                    <td><input
-                        id="available"
-                        name="available"
-                        type="checkbox"
-                        onChange={handleInputChange}
-                    /></td>
-                    <td><input
-                        id="hasMMD"
-                        name="hasMMD"
-                        type="checkbox"
-                        onChange={handleInputChange}
-                    /></td>
-                    <td><input
-                        id="beds"
-                        name="beds"
-                        type="number"
-                        min="0"
-                        onChange={handleInputChange}
-                    /></td>
-                    <td><input
-                        id="cradles"
-                        name="cradles"
-                        type="number"
-                        min="0"
-                        onChange={handleInputChange}
-                    /></td>
-                    <td><input
-                        id="accessible"
-                        name="accessible"
-                        type="checkbox"
-                        onChange={handleInputChange}
-                    /></td>
-                    </tbody>
+                        <tbody>
+                            <td><input
+                                id="city"
+                                name="city"
+                                onChange={handleInputChange}
+                            /></td>
+                            <td><input
+                                id="accommodationaUnit"
+                                name="accommodationUnit"
+                                type="checkbox"
+                                onChange={handleInputChange}
+                            /></td>
+                            <td><input
+                                id="available"
+                                name="available"
+                                type="checkbox"
+                                onChange={handleInputChange}
+                            /></td>
+                            <td><input
+                                id="hasMMD"
+                                name="hasMMD"
+                                type="checkbox"
+                                onChange={handleInputChange}
+                            /></td>
+                            <td><input
+                                id="beds"
+                                name="beds"
+                                type="number"
+                                min="0"
+                                onChange={handleInputChange}
+                            /></td>
+                            <td><input
+                                id="cradles"
+                                name="cradles"
+                                type="number"
+                                min="0"
+                                onChange={handleInputChange}
+                            /></td>
+                            <td><input
+                                id="accessible"
+                                name="accessible"
+                                type="checkbox"
+                                onChange={handleInputChange}
+                            /></td>
+                        </tbody>
                     </table>
                     <button type="button" onClick={handleInputChange} class="btn btn-warning">לכל הדירות</button>
                 </div>
@@ -190,13 +190,13 @@ function Guest() {
                                     <div className="card">
                                         <table dir='rtl'>
                                             <tbody>
-                                                <tr scope="col"><span style={{ fontWeight: 'bold' }}> שם:  </span>{d.name}</tr>
-                                                <tr scope="col"><span style={{ fontWeight: 'bold' }}> טלפון:  </span>{d.phone}</tr>
                                                 <tr scope="col"><span style={{ fontWeight: 'bold' }}> עיר  </span>{d.city}</tr>
+                                                <tr scope="col"><span style={{ fontWeight: 'bold' }}> מספר נפשות:  </span>{d.numOfBeds + d.numOfMattresses}</tr>
+
                                             </tbody>
                                         </table>
-                                        <div style={{ "margin": "20px", backgroundColor:"white" }}>
-                                            <Button variant="Light" style={{background: "white", border: "2px solid #95532f", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}
+                                        <div style={{ "margin": "20px", backgroundColor: "white" }}>
+                                            <Button variant="Light" style={{ background: "white", border: "2px solid #95532f", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}
                                                 onClick={() => handleClick(i)} >
                                                 פרטים נוספים
                                             </Button>
@@ -208,7 +208,7 @@ function Guest() {
                                                 <div id="collapsePanel" dir='rtl'>
                                                     <table class="table table-striped" dir='rtl'>
                                                         <thead>
-                                                            <tr><th scope="row">יחידת אירוח</th>
+                                                            <tr><th scope="row">כניסה נפרדת</th>
                                                                 <td>{d.accommodationUnit ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">מיטות</th>
                                                                 <td>{d.numOfBeds}</td></tr>
@@ -223,16 +223,18 @@ function Guest() {
                                                             <tr><th scope="row">נגיש?</th>
                                                                 <td>{d.isAccessible ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">בתשלום?</th>
-                                                                <td>{d.thayment ? 'כן' : 'לא'}</td></tr>
+                                                                <td>{d.payment ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">טלפון</th>
-                                                                <td>{d.thhone}</td></tr>
-                                                            <tr><th scope="row">וואטצאפ</th>
-                                                                <td>{d.whatsathth ? 'כן' : 'לא'}</td></tr>
+                                                                <td>{d.phone}</td></tr>
+                                                            <tr><th scope="row">וואטסאפ</th>
+                                                                <td>{d.whatsapp ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">מייל</th>
                                                                 <td>{d.email}</td></tr>
+                                                            <tr><th scope="row">הערות</th>
+                                                                <td>{d.notes}</td></tr>
+
                                                         </thead>
                                                     </table>
-                                                    <p>הערות: {d.notes}</p>
                                                 </div>
                                             </Collapse>
                                         </div >
