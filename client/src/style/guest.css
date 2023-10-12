@@ -1,13 +1,15 @@
-/* .card {
+.card {
   margin-bottom: 4rem;
   background-color: rgb(247, 247, 247);
   height: 100%;
   text-align: center;
 }
 
+
 .apartment-filter{
   text-align: center;
 }
+/* 
 .apartments{
   display:flex;
   flex-wrap:wrap;
