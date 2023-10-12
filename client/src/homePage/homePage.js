@@ -13,12 +13,12 @@ export function HomePage() {
   return (
     <>
     <div className='cards' dir='rtl'>
-      <div class="card" style={{width:"20rem", textAlign: 'center'}}>
-        <img src={img1} class="card-img-top" alt="..." />
-        <div class="card-body" style={{backgroundColor: "white"}}>
-          <h5 class="card-title" style={{backgroundColor: "white"}}>מעונין לארח?</h5>
-          <p class="card-text" style={{backgroundColor: "white"}}>בוא והיה שותף באירוח משפחה מאזור המלחמה באפשרויות שביכולתך</p>
-          <button type="button" class="btn btn-warning" onClick={moveTohostMode}>
+      <div className="card" style={{width:"20rem", textAlign: 'center'}}>
+        <img src={img1} className="card-img-top" alt="..." />
+        <div className="card-body" style={{backgroundColor: "white"}}>
+          <h5 className="card-title" style={{backgroundColor: "white"}}>מעונין לארח?</h5>
+          <p className="card-text" style={{backgroundColor: "white"}}>בוא והיה שותף באירוח משפחה מאזור המלחמה באפשרויות שביכולתך</p>
+          <button type="button" className="btn btn-warning" onClick={moveTohostMode}>
             מלא טופס
           </button>
           </div>
