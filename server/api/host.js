@@ -20,7 +20,6 @@ router.use(auth);
 
 
 router.put(`/`, async (req, res, next) => {
-
     encryptedPassword = await bcrypt.hash(req.body.password, 10);
     user = req.body;
     user.password = encryptedPassword;
@@ -29,6 +28,7 @@ router.put(`/`, async (req, res, next) => {
         return res.status(404).json({ error: 'User not found' });
     }
     extractedId = existingUser[0]._id
+
     let result = await hostService.update(extractedId.toString(), user);
     if (result.error) {
         next(result.error);
