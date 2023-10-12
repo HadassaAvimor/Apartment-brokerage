@@ -50,6 +50,6 @@ router.delete(`/:id`, async (req, res, next) => {
 });
 
 router.use(errorMW);
-router.use(logger);
+// router.use(logger);
 
 module.exports = router;
