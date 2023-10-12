@@ -30,13 +30,13 @@
   transition: transform 0.3s ease-in-out; 
 }
 
-/* 
+
 @media (max-width: 768px) {
   .card {
       flex-basis:90%; 
   }
 }
- */
+
 .apartment-filter table tbody tr {
   text-align: left;
   margin-bottom: 10px;
