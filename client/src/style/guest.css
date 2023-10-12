@@ -13,9 +13,9 @@
 .apartments{
   display:flex;
   flex-wrap:wrap;
-  justify-content:center;
-  align-items: flex-start;
-  height: 0%
+  /* justify-content:center;
+  align-items: flex-start; */
+  /* height: 0% */
 }
 
 .card{
@@ -36,7 +36,7 @@
       flex-basis:90%; 
   }
 }
-
+ */
 .apartment-filter table tbody tr {
   text-align: left;
   margin-bottom: 10px;
@@ -59,4 +59,4 @@ span{
   border-style: solid;
   border: "2px solid #95532F";
   box-shadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
-} */
+}
