@@ -89,7 +89,7 @@ function Host() {
                                     </small>
 
                                     <input class="form-control" type="text" name="name" id="name" {...register('name')} />
-                                    <label for="name" id="label">שם מלא</label>
+                                    <label for="name" id="label">איש קשר</label>
                                     <small class="text-danger">
                                         {errors?.name && errors.name.message}
                                     </small>

@@ -195,6 +195,8 @@ function Guest() {
                                                                 <td>{d.payment ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">טלפון</th>
                                                                 <td>{d.phone}</td></tr>
+                                                                <tr><th scope="row">איש קשר</th>
+                                                                <td>{d.name}</td></tr>
                                                             <tr><th scope="row">וואטסאפ</th>
                                                                 <td>{d.whatsapp ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">מייל</th>
