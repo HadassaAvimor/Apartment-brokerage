@@ -10,6 +10,7 @@ import { HomePage } from './homePage/homePage';
 import { Header } from './Header';
 import UpdateHost from './updateHost/UpdateHost';
 // import Update from './host/update';
+import Footer from './Footer'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         </Router>
 
       </Provider>
+      <Footer></Footer>
 </>
   );
 }
