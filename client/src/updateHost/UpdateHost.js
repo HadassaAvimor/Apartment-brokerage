@@ -5,7 +5,6 @@ import { Header } from "../Header";
 import { getToken } from "../loginWithAuth/TokenService";
 import { MDBContainer } from "mdb-react-ui-kit";
 import { useForm } from "react-hook-form";
-import "../style/host.css"
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 

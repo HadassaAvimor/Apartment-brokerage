@@ -160,12 +160,12 @@ function Guest() {
                                     <div className="card">
                                         <table dir='rtl'>
                                             <tbody>
-                                                <tr scope="col"><span style={{ "fontWeight": 'bold' }}> עיר  </span>{d.city}</tr>
-                                                <tr scope="col"><span style={{ "fontWeight": 'bold' }}> מספר נפשות:  </span>{d.numOfBeds + d.numOfMattresses}</tr>
+                                                <tr scope="col"><span> עיר  </span>{d.city}</tr>
+                                                <tr scope="col"><span> מספר נפשות:  </span>{d.numOfBeds + d.numOfMattresses}</tr>
                                             </tbody>
                                         </table>
-                                        <div style={{ "margin": "20px", "backgroundColor": "white" }}>
-                                            <Button variant="Light" style={{ "background": "white", border: "2px solid #95532F", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}
+                                        <div id="div-button">
+                                            <Button variant="Light" id="Button"
                                                 onClick={() => handleClick(i)} >
                                                 פרטים נוספים
                                             </Button>
