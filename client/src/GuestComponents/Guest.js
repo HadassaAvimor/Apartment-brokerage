@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../style/guest.css'
+import '../style/guest.css';
 import axios from 'axios';
 import { Button, Collapse } from 'react-bootstrap';
 import img1 from '../images/img1.jpg';

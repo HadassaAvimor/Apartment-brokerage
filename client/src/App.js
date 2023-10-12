@@ -33,7 +33,9 @@ function App() {
         </Router>
 
       </Provider>
+      <footer>
       <Footer></Footer>
+      </footer>
 </>
   );
 }
