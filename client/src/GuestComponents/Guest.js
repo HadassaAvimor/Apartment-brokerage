@@ -187,9 +187,9 @@ function Guest() {
                                                             <tr><th scope="row">עריסות</th>
                                                                 <td>{d.numOfCribs}</td></tr>
                                                             <tr><th scope="row">פנוי כרגע?</th>
-                                                                <td>{d.hasMMD ? 'כן' : 'לא'}</td></tr>
-                                                            <tr><th scope="row">יש ממ"ד</th>
                                                                 <td>{d.currentlyAvailable ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">יש ממ"ד</th>
+                                                                <td>{d.hasMMD ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">נגיש?</th>
                                                                 <td>{d.isAccessible ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">בתשלום?</th>
