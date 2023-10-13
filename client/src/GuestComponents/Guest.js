@@ -69,9 +69,10 @@ function Guest() {
                 return false;
             }
             if (parseInt(filters.cradles) > apartment.numOfCribs) {
+                
                 return false
             }
-            if (filters.accessible && apartment.isAccessible) {
+            if (filters.accessible && !apartment.isAccessible) {
                 return false
             }
             return true; // If all conditions pass, keep the apartment in the filtered list
@@ -94,7 +95,7 @@ function Guest() {
                         <thead >
                             <tr>
                                 <th scope="col">עיר</th>
-                                <th scope="col">יחידת אירוח</th>
+                                <th scope="col">כניסה פרטית</th>
                                 <th scope="col">זמינה כרגע</th>
                                 <th scope="col">יש ממ"ד</th>
                                 <th scope="col">מספר מיטות</th>
@@ -160,7 +161,7 @@ function Guest() {
                                     <div className="card">
                                         <table dir='rtl'>
                                             <tbody>
-                                                <tr scope="col"><span> עיר  </span>{d.city}</tr>
+                                                <tr scope="col"><span> עיר:  </span>{d.city}</tr>
                                                 <tr scope="col"><span> מספר נפשות:  </span>{d.numOfBeds + d.numOfMattresses}</tr>
                                             </tbody>
                                         </table>
@@ -195,7 +196,7 @@ function Guest() {
                                                                 <td>{d.payment ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">טלפון</th>
                                                                 <td>{d.phone}</td></tr>
-                                                                <tr><th scope="row">איש קשר</th>
+                                                            <tr><th scope="row">איש קשר</th>
                                                                 <td>{d.name}</td></tr>
                                                             <tr><th scope="row">וואטסאפ</th>
                                                                 <td>{d.whatsapp ? 'כן' : 'לא'}</td></tr>

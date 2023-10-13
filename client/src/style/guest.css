@@ -3,37 +3,42 @@
   background-color: rgb(247, 247, 247);
   height: 100%;
   text-align: center;
+  float: inline-start;
+  flex-basis: 30%;
+  /* background-color: #fff;  */
+
+
 }
 
 
-.apartment-filter{
+.apartment-filter {
   text-align: center;
 }
 
-.apartments{
-  display:flex;
-  flex-wrap:wrap;
-  /* justify-content:center;
-  align-items: flex-start; */
+.apartments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /*  align-items: flex-start; */
   /* height: 0% */
 }
 
-.card{
+/* .card{
   flex-basis:30%;
   background-color: #fff; 
-}
+} */
 
 .my-collapse-content {
-  background-color: #fff; 
+  background-color: #fff;
   transform-origin: top;
-  transform: scaleY(0); 
-  transition: transform 0.3s ease-in-out; 
+  transform: scaleY(0);
+  transition: transform 0.3s ease-in-out;
 }
 
 
 @media (max-width: 768px) {
   .card {
-      flex-basis:90%; 
+    flex-basis: 90%;
   }
 }
 
@@ -42,19 +47,22 @@
   margin-bottom: 10px;
 }
 
-tr{
+tr {
   background-color: #fff;
 }
-span{
+
+span {
   background: #fff;
   background-color: #fff;
   font-weight: 'bold';
 }
-#div-button{
+
+#div-button {
   margin: 20px;
   background-color: white;
 }
-#Button{
+
+#Button {
   background-color: rgb(255, 244, 231);
   border-style: solid;
   border: "2px solid #95532F";

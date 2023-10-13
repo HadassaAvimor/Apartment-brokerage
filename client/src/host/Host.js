@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 
 
 function Host() {
+    const numOfBedsIsOK = useRef(true);
     const baseUrl = process.env.REACT_APP_API_URL;
-    console.log(baseUrl);
     const hostUrl = `${baseUrl}/auth/register`;
     const isSendSuccessfuly = useRef(false);
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ function Host() {
         notes: yup.string(),
         phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
         whatsapp: yup.bool().required("נא לסמן"),
-        email: yup.string().default(' '),  
+        email: yup.string().default(' '),
         password: yup.string().min(5).max(12).required()
     });
 
@@ -47,22 +47,26 @@ function Host() {
     };
 
     const onSubmit = async (data) => {
-        console.log(data);
-        await axios.post(hostUrl, data, config)
-            .then(response => {
-                if (response.status >= 200 && response.status < 300) {
-                    console.log(response.data);
-                    isSendSuccessfuly.current = true;
-                    setTimeout(() => {
-                        navigate('/');
-                    }, 3000);
-                    
-                }
+        if (data.numOfBeds + data.numOfMattresses === 0) {
+            numOfBedsIsOK.current = false
+        }
+        else {
+            await axios.post(hostUrl, data, config)
+                .then(response => {
+                    if (response.status >= 200 && response.status < 300) {
+                        console.log(response.data);
+                        isSendSuccessfuly.current = true;
+                        setTimeout(() => {
+                            navigate('/');
+                        }, 3000);
 
-            })
-            .catch(error => {
-                console.log(error);
-            });
+                    }
+
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     }
 
     return (
@@ -161,7 +165,7 @@ function Host() {
                                         type="number"
                                         name="numOfCribs"
                                         min="0"
-                                        {...register('numOfBeds')}
+                                        {...register('numOfCribs')}
                                         defaultValue={0}
                                     />
                                     <label for="form3Example1m">מספר עריסות</label>
@@ -170,6 +174,10 @@ function Host() {
                                     </small>
                                 </div>
                             </div>
+                            <div>
+                                {numOfBedsIsOK.current == false && <p style={{ color: "red" }}>יש להכניס מספר מיטות/מזרונים תקין</p>}
+                            </div>
+
                             <div class="form-row">
                                 <div class="form-group">
                                     <div class="radio-row">
@@ -214,10 +222,10 @@ function Host() {
                                     </small>
                                 </div>
                             </div>
-   
+
                             <div class="form-row">
                                 <div class="form-group">
-                                    
+
                                     <div class="radio-row">
                                         <label for="whatsapp-true">כן</label>
                                         <input type="radio" id="whatsapp-true" value="true" name="whatsapp" {...register('whatsapp')} />
@@ -288,9 +296,9 @@ function Host() {
                         </>
                         <input class="btn btn-outline-dark" type="submit"></input>
 
-                       {isSendSuccessfuly.current == true?<h3>
-                        הדירה נוספה בהצלחה. תודה רבה! תוכל לעדכן את הפרטים בכל עת.
-                        </h3>:<></>}
+                        {isSendSuccessfuly.current == true ? <h3>
+                            הדירה נוספה בהצלחה. תודה רבה! תוכל לעדכן את הפרטים בכל עת.
+                        </h3> : <></>}
                     </form>
                 </div>
             </div >
