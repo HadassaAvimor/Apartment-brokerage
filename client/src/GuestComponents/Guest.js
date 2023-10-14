@@ -49,6 +49,9 @@ function Guest() {
     };
     const filterApartments = () => {
         const filteredApartments = apartments.filter((apartment) => {
+            if (!apartment.currentlyAvailable){
+                return false;
+            }
             // Check if the apartment's city matches the selected city filter
             if (filters.city != apartment.city && filters.city != '') {
                 return false;
@@ -69,7 +72,7 @@ function Guest() {
                 return false;
             }
             if (parseInt(filters.cradles) > apartment.numOfCribs) {
-                
+
                 return false
             }
             if (filters.accessible && !apartment.isAccessible) {
@@ -96,7 +99,6 @@ function Guest() {
                             <tr>
                                 <th scope="col">עיר</th>
                                 <th scope="col">כניסה פרטית</th>
-                                <th scope="col">זמינה כרגע</th>
                                 <th scope="col">יש ממ"ד</th>
                                 <th scope="col">מספר מיטות</th>
                                 <th scope="col">מספר עריסות</th>
@@ -186,8 +188,6 @@ function Guest() {
                                                                 <td>{d.numOfMattresses}</td></tr>
                                                             <tr><th scope="row">עריסות</th>
                                                                 <td>{d.numOfCribs}</td></tr>
-                                                            <tr><th scope="row">פנוי כרגע?</th>
-                                                                <td>{d.currentlyAvailable ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">יש ממ"ד</th>
                                                                 <td>{d.hasMMD ? 'כן' : 'לא'}</td></tr>
                                                             <tr><th scope="row">נגיש?</th>
