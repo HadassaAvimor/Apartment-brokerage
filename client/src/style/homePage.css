@@ -1,11 +1,13 @@
-*{
+* {
     margin: auto;
-    background-color: rgb(255, 244, 231);
+    /* background-color: rgb(255, 244, 231); */
 }
-.cards{
+
+.cards {
     display: flex;
     margin: 8%;
 }
+
 @media (max-width: 768px) {
     .cards {
         /* Override the display property for mobile screens */
@@ -14,13 +16,20 @@
     }
 }
 
-.card{
+.card {
     border-style: solid;
     border-color: black;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: transform 0.15s ease-in-out; /* Add a smooth transition effect */
-    }
+    transition: transform 0.15s ease-in-out;
+    /* Add a smooth transition effect */
+}
 
-    .card:hover {
-        transform: scale(1.1); /* Increase the size on hover */
-    }
+#card1:hover {
+    transform: scale(1.1);
+    /* Increase the size on hover */
+}
+
+#card2:hover {
+    transform: scale(1.1);
+    /* Increase the size on hover */
+}

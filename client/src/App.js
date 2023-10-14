@@ -10,13 +10,13 @@ import { Header } from './Header';
 import UpdateHost from './updateHost/UpdateHost';
 // import Update from './host/update';
 import Footer from './Footer'
-
+import "./style/app.css";
 
 function App() {
   return (
 
     <>
-
+    <div className='app'>
       <Header></Header>
       <Provider store={store}>
         <Router>
@@ -35,6 +35,7 @@ function App() {
       <footer>
       <Footer></Footer>
       </footer>
+      </div>
 </>
   );
 }

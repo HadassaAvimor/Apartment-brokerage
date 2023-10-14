@@ -1,66 +1,24 @@
-.wrap {
-  background-image: url("../images/img4.jpg");
-  background-size: cover;
-  height: calc(100% + 50px);
-
-}
-
-/* .container{
+#form-host{
+  background-color: rgb(255, 244, 231);
   border-style: solid;
   border-color: brown;
-} */
+}
+.host-wrap{
+  text-align: center;
+  background-image: url("../images/img4.jpg");
+  background-size: cover;
+}
+ @media screen and (max-width: 768px) {
 
-.form-group {
-  
-  padding-right: 4vw;
-  padding-top: 1.5vh;
+.form-check{
+  margin: 10px;
+}
+#checkboxes{
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+}
+.host-wrap{
+  background-image: none
 }
 
-label {
-  margin-left: 10px;
-}
-
-#label{
-  margin-right: 2vw;
-
-}
-
-
-.radio-buttons {
-  /* display: flex; */
-  display: block;
-  align-items: center;
-}
-
-.radio-buttons label,
-.radio-buttons input {
-  margin-right: 10px;
-}
-
-@media screen and (max-width: 768px) {
-  .form-group {
-    flex-direction: column; /* Stack elements vertically on small screens */
-    align-items: flex-start;
-  }
-
-  label {
-    margin-left: 0; /* Remove left margin on labels */
-    margin-top: 10px; /* Add top margin for spacing between label and input */
-  }
-
-  #label {
-    margin-right: 0; /* Remove right margin on #label */
-  }
-
-  .radio-buttons {
-    margin-top: 10px; /* Add top margin for spacing between radio buttons */
-  }
-
-  .radio-buttons label,
-  .radio-buttons input {
-    margin-right: 0; /* Remove margin between radio buttons on small screens */
-  }
-}
+} 

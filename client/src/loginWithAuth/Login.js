@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setTokens } from "./TokenService";
 import img1 from "../images/img1.jpg";
 import { Link } from "react-router-dom";
-
+import "../style/login.css";
 function Login() {
     const baseUrl = process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
@@ -79,14 +79,14 @@ function Login() {
 
     return (
         <>
-                <div className="container py-5 h-80">
+                <div className="container py-5 h-80" >
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col col-xl-10">
-                            <div className="card" style={{ "borderRadius": "1rem" }}>
+                            <div className="card" id="login" style={{ "borderRadius": "1rem" }}>
                                 <div className="row g-0">
                                     <div className="col-md-6 col-lg-5 d-none d-md-block">
                                         <img src={img1}
-                                            alt="login form" className="img-fluid" style={{ "borderRadius": "1rem 0 0 1rem" }} />
+                                            alt="login form" className="img-fluid" style={{ "borderRadius": "1rem", marginLeft: "40px" }} />
                                     </div>
                                     <div className="col-md-6 col-lg-7 d-flex align-items-center">
                                         <div className="card-body p-4 p-lg-5 text-black">

@@ -1,16 +1,17 @@
-#nav{
-    border-bottom: solid;
-    border-color: rgb(255, 221, 0);
-    margin-top: 15px;
-}
-#phone{
-    margin: 10px;
-    color: rgb(0, 0, 0);
-}
-#text{
-    color: rgb(0, 0, 0);
-}
+
 .head{
-    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+ /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  */
     font-weight: bolder;
+    text-align: center;
+}
+
+.wrap-head{
+    background-color: rgb(0, 0, 0);
+    border-bottom: solid;
+    border-width: 3px;
+    border-color: rgb(255, 221, 0);
+    /* margin-top: 15px; */
+}
+.Achim{
+    color: rgb(255, 255, 255);
 }

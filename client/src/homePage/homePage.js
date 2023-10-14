@@ -13,7 +13,7 @@ export function HomePage() {
   return (
     <>
     <div className='cards' dir='rtl'>
-      <div className="card" style={{width:"20rem", textAlign: 'center'}}>
+      <div className="card" id="card1" style={{width:"20rem", textAlign: 'center'}}>
         <img src={img1} className="card-img-top" alt="..." />
         <div className="card-body" style={{backgroundColor: "white"}}>
           <h5 className="card-title" style={{backgroundColor: "white"}}>מעונין לארח?</h5>
@@ -24,7 +24,7 @@ export function HomePage() {
           </div>
       </div>
 
-      <div class="card" style={{width:"20rem", textAlign: 'center'}}>
+      <div class="card" id="card2" style={{width:"20rem", textAlign: 'center'}}>
         <img src={img2} class="card-img-top" alt="..."/>
         <div class="card-body" style={{backgroundColor: "white"}}>
           <h5 class="card-title" style={{backgroundColor: "white"}}>מעונין להתארח?</h5>
