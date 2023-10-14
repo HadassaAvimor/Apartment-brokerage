@@ -6,8 +6,6 @@
   text-align: center;
   float: inline-start;
   flex-basis: 30%;
-  /* background-color: #fff;  */
-
 }
 
 
@@ -19,14 +17,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /*  align-items: flex-start; */
-  /* height: 0% */
+
 }
 
-/* .card{
-  flex-basis:30%;
-  background-color: #fff; 
-} */
 
 .my-collapse-content {
   background-color: #fff;
@@ -74,7 +67,6 @@ span {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* align-items: flex-start; */
   margin-bottom: 20px;
   width: 100%;
 }

@@ -18,7 +18,7 @@ export function ErrorModal() {
     return (
         
             <Modal id="modal" show={show} onHide={handleClose} >
-                <h4>{error}</h4>
+                <h4 className="text-modal">{error}</h4>
             </Modal>
         
     );

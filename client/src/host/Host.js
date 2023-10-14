@@ -56,7 +56,6 @@ function Host() {
             await axios.post(hostUrl, data, config)
                 .then(response => {
                     if (response.status >= 200 && response.status < 300) {
-                        console.log(response.data);
                         isSendSuccessfuly.current = true;
                         navigate('/ExplanationModal')
 
@@ -326,6 +325,9 @@ function Host() {
                                         הדירה נוספה בהצלחה. תודה רבה! תוכל לעדכן את הפרטים בכל עת.
                                     </h3> : <></>}
                                 </form>
+                                <br></br>
+                                <br></br>
+
                             </div>
                         </div>
                     </div>

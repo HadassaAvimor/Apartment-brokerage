@@ -2,6 +2,7 @@
   background-color: rgb(255, 244, 231);
   border-style: solid;
   border-color: brown;
+  border-radius: 4px;
 }
 .host-wrap{
   text-align: center;
@@ -20,5 +21,7 @@
 .host-wrap{
   background-image: none
 }
-
+#form-host{
+  border: none;
+}
 } 

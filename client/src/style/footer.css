@@ -1,5 +1,5 @@
 .footer {
-  background-color: black;
+  background-color: rgba(0, 0, 0);
   color: white;
   width: 100%;
   position: fixed;
@@ -8,12 +8,15 @@
 
 .text_for_footer {
   text-align: center;
-  background: black
+  background-color: rgba(0, 0, 0)
 }
 
 @media (min-width: 768px) {
   .footer {
+    background-color: rgba(0, 0, 0);
     position: static;
     padding: 20px;
+    bottom: 0;
   }
+  
 }
