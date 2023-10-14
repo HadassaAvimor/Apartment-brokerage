@@ -282,6 +282,7 @@ import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ExplanationModal } from "../host/ExplanationModal";
 
 function UpdateHost() {
     const numOfBedsIsOK = useRef(true);
@@ -328,9 +329,8 @@ function UpdateHost() {
                     if (response.status >= 200 && response.status < 300) {
                         console.log(response.data);
                         isSendSuccessfuly.current = true;
-                        setTimeout(() => {
-                            navigate('/');
-                        }, 3000);
+                        navigate('/ExplanationModal')
+
 
                     }
 

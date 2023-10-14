@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import "./Host.css"
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { ExplanationModal } from "./ExplanationModal";
 
 
 
@@ -56,9 +57,7 @@ function Host() {
                     if (response.status >= 200 && response.status < 300) {
                         console.log(response.data);
                         isSendSuccessfuly.current = true;
-                        setTimeout(() => {
-                            navigate('/');
-                        }, 3000);
+                        navigate('/ExplanationModal')
 
                     }
 
