@@ -63,8 +63,16 @@ function Host() {
 
                 })
                 .catch(error => {
-                    console.log(error);
-                });
+                    if(error.response.status === 404){
+                        navigate("/error", { state: { error: "דף זה לא נמצא (שגיאת 404) נסה שוב מאוחר יותר" } } );
+                    }
+                    else if(error.response.status >= 400 && error.response.status <500){
+                        navigate("/error", { state: { error: "שגיאת לקוח. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } } );
+    
+                    }
+                    else{
+                        navigate("/error", { state: { error: "שגיאת שרת. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } } );
+                    }                });
         }
     }
 
