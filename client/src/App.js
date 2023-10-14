@@ -12,6 +12,7 @@ import UpdateHost from './updateHost/UpdateHost';
 import Footer from './Footer'
 
 
+
 function App() {
   return (
 
@@ -33,9 +34,9 @@ function App() {
 
       </Provider>
       <footer>
-      <Footer></Footer>
+        <Footer/>
       </footer>
-</>
+    </>
   );
 }
 
