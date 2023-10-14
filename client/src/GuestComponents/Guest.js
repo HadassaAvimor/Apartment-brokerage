@@ -51,7 +51,7 @@ function Guest() {
         const filteredApartments = apartments.filter((apartment) => {
             // Check if the apartment's city matches the selected city filter
             if (filters.city != apartment.city && filters.city != '') {
-                return false;
+                return apartment.city.includes(filters.city) || apartment.city.startsWith(filters.city);
             }
             // Check if the apartment's accommodationUnit matches the selected filter
             if (filters.accommodationUnit && !apartment.accommodationUnit) {
@@ -69,7 +69,7 @@ function Guest() {
                 return false;
             }
             if (parseInt(filters.cradles) > apartment.numOfCribs) {
-                
+
                 return false
             }
             if (filters.accessible && !apartment.isAccessible) {
