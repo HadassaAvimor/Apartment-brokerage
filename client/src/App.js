@@ -10,7 +10,17 @@ import { Header } from './Header';
 import UpdateHost from './updateHost/UpdateHost';
 // import Update from './host/update';
 import Footer from './Footer'
+<<<<<<< HEAD
 import "./style/app.css";
+=======
+
+import { ExplanationModal } from './host/ExplanationModal';
+
+import { ErrorModal } from './errorModel/ErrorModal';
+
+
+
+>>>>>>> 0e2fb60a6fe0de3439c7deb01c8d3219cd72e8e8
 
 function App() {
   return (
@@ -27,16 +37,25 @@ function App() {
             <Route path="/guest" element={<Guest />} />
             <Route path="/updateHost" element={<UpdateHost />} />
 
+            <Route path="/ExplanationModal" element={<ExplanationModal />} />
+
+            <Route path="/error" element={<ErrorModal />} />
+
+
           </Routes>
 
         </Router>
-
+        {/* <ExplanationModal></ExplanationModal> */}
       </Provider>
       <footer>
-      <Footer></Footer>
+
       </footer>
+<<<<<<< HEAD
       </div>
 </>
+=======
+    </>
+>>>>>>> 0e2fb60a6fe0de3439c7deb01c8d3219cd72e8e8
   );
 }
 

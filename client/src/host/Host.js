@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import "./Host.css";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ExplanationModal } from "./ExplanationModal";
 
 
 
@@ -57,16 +58,22 @@ function Host() {
                     if (response.status >= 200 && response.status < 300) {
                         console.log(response.data);
                         isSendSuccessfuly.current = true;
-                        setTimeout(() => {
-                            navigate('/');
-                        }, 3000);
+                        navigate('/ExplanationModal')
 
                     }
 
                 })
                 .catch(error => {
-                    console.log(error);
-                });
+                    if(error.response.status === 404){
+                        navigate("/error", { state: { error: "דף זה לא נמצא (שגיאת 404) נסה שוב מאוחר יותר" } } );
+                    }
+                    else if(error.response.status >= 400 && error.response.status <500){
+                        navigate("/error", { state: { error: "שגיאת לקוח. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } } );
+    
+                    }
+                    else{
+                        navigate("/error", { state: { error: "שגיאת שרת. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } } );
+                    }                });
         }
     }
 
