@@ -10,6 +10,8 @@ import { Header } from './Header';
 import UpdateHost from './updateHost/UpdateHost';
 // import Update from './host/update';
 import Footer from './Footer'
+import { ErrorModal } from './errorModel/ErrorModal';
+
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
             <Route path="/host" element={<Host />} />
             <Route path="/guest" element={<Guest />} />
             <Route path="/updateHost" element={<UpdateHost />} />
+            <Route path="/error" element={<ErrorModal />} />
 
           </Routes>
 
@@ -33,9 +36,9 @@ function App() {
 
       </Provider>
       <footer>
-      <Footer></Footer>
+        <Footer/>
       </footer>
-</>
+    </>
   );
 }
 

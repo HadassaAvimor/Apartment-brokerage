@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../style/guest.css';
 import axios from 'axios';
 import { Button, Collapse } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 function Guest() {
     const baseUrl = process.env.REACT_APP_API_URL;
+    const navigate = useNavigate();
     const [apartments, setApartments] = useState([]);
     const [filteredApartments, setFilteredApartments] = useState([]);
     const [open, setOpen] = useState(false);
@@ -25,13 +27,18 @@ function Guest() {
                 setApartments(response.data);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.status === 404){
+                    navigate("/error", { state: { error: "דף זה לא נמצא (שגיאת 404) נסה שוב מאוחר יותר" } } );
+                }
+                else if(error.response.status >= 400 && error.response.status <500){
+                    navigate("/error", { state: { error: "שגיאת לקוח. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } } );
+
+                }
+                else{
+                    navigate("/error", { state: { error: "שגיאת שרת. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } } );
+                }
             });
     }
-    useEffect(() => {
-        getAppartments();
-        setFilteredApartments(filterApartments());
-    }, [], filters);
     useEffect(() => {
         const fetchData = async () => {
             let temp = await getAppartments();
@@ -50,6 +57,9 @@ function Guest() {
     };
     const filterApartments = () => {
         const filteredApartments = apartments.filter((apartment) => {
+            if (!apartment.currentlyAvailable){
+                return false;
+            }
             // Check if the apartment's city matches the selected city filter
             if (filters.city != apartment.city && filters.city != '') {
                 return apartment.city.includes(filters.city) || apartment.city.startsWith(filters.city);
@@ -185,6 +195,61 @@ function Guest() {
                                             onClick={() => handleClick(i)} >
                                             פרטים נוספים
                                         </Button>
+                
+                <div className="apartments">
+                    {r &&
+                        filteredApartments.map((d, i) => {
+                            return (
+                                <>
+                                    <div className="card">
+                                        <table dir='rtl'>
+                                            <tbody>
+                                                <tr scope="col"><span> עיר:  </span>{d.city}</tr>
+                                                <tr scope="col"><span> מספר נפשות:  </span>{d.numOfBeds + d.numOfMattresses}</tr>
+                                            </tbody>
+                                        </table>
+                                        <div id="div-button">
+                                            <Button variant="Light" id="Button"
+                                                onClick={() => handleClick(i)} >
+                                                פרטים נוספים
+                                            </Button>
+                                        </div>
+                                        {/* </div> */}
+                                        <br></br>
+                                        <div className="card-header">
+                                            <Collapse key={i} in={open && openIndex == i}>
+                                                <div id="collapsePanel" dir='rtl'>
+                                                    <table class="table table-striped" dir='rtl'>
+                                                        <thead>
+                                                            <tr><th scope="row">כניסה נפרדת</th>
+                                                                <td>{d.accommodationUnit ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">מיטות</th>
+                                                                <td>{d.numOfBeds}</td></tr>
+                                                            <tr><th scope="row">מזרנים</th>
+                                                                <td>{d.numOfMattresses}</td></tr>
+                                                            <tr><th scope="row">עריסות</th>
+                                                                <td>{d.numOfCribs}</td></tr>
+                                                            <tr><th scope="row">יש ממ"ד</th>
+                                                                <td>{d.hasMMD ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">נגיש?</th>
+                                                                <td>{d.isAccessible ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">בתשלום?</th>
+                                                                <td>{d.payment ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">טלפון</th>
+                                                                <td>{d.phone}</td></tr>
+                                                            <tr><th scope="row">איש קשר</th>
+                                                                <td>{d.name}</td></tr>
+                                                            <tr><th scope="row">וואטסאפ</th>
+                                                                <td>{d.whatsapp ? 'כן' : 'לא'}</td></tr>
+                                                            <tr><th scope="row">מייל</th>
+                                                                <td>{d.email}</td></tr>
+                                                            <tr><th scope="row">הערות</th>
+                                                                <td>{d.notes}</td></tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </Collapse>
+                                        </div >
                                     </div>
                                     {/* </div> */}
                                     <br></br>
