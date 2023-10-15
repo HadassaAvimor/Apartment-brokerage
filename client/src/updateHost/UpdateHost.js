@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ExplanationModal } from "../host/ExplanationModal";
 
 function UpdateHost() {
+    const [disabledBtn, setDisabledBtn] = useState(false);
     const numOfBedsIsOK = useRef(true);
     const baseUrl = process.env.REACT_APP_API_URL;
     const hostUrl = `${baseUrl}/hosts`;
@@ -47,16 +48,21 @@ function UpdateHost() {
             numOfBedsIsOK.current = false
         }
         else {
+            setDisabledBtn(true);
             data.password = user.password;
             data.email = user.email;
             await axios.put(hostUrl, data, config)
                 .then(response => {
                     if (response.status >= 200 && response.status < 300) {
+                        setDisabledBtn(false);
                         navigate('/explanationModal')
                     }
 
                 })
                 .catch(error => {
+                    
+                    setDisabledBtn(false);
+
                     if (error.response.status === 404) {
                         navigate("/error", { state: { error: "דף זה לא נמצא (שגיאת 404) נסה שוב מאוחר יותר" } });
                     }
@@ -282,7 +288,7 @@ function UpdateHost() {
                                         </div>
                                     </div>
                                     <br></br>
-                                    <button className="btn btn-dark btn-lg btn-block">עדכון</button>
+                                    <button className="btn btn-dark btn-lg btn-block" disabled={disabledBtn}>עדכון</button>
                                 </form>
                                 <br></br>
                                 <br></br>
