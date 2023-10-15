@@ -43,9 +43,7 @@ function Host() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
-    var config = {
-        headers: { "x-access-token": getToken() }
-    };
+
 
     const onSubmit = async (data) => {
         if (data.numOfBeds + data.numOfMattresses === 0) {
@@ -53,11 +51,10 @@ function Host() {
         }
         else {
             numOfBedsIsOK.current = true;
-            await axios.post(hostUrl, data, config)
+            await axios.post(hostUrl, data)
                 .then(response => {
                     if (response.status >= 200 && response.status < 300) {
-                        isSendSuccessfuly.current = true;
-                        navigate('/ExplanationModal')
+                        navigate('/explanationModal')
 
                     }
 
@@ -72,7 +69,8 @@ function Host() {
                     }
                     else{
                         navigate("/error", { state: { error: "שגיאת שרת. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } } );
-                    }                });
+                    }                
+                });
         }
     }
 
@@ -282,14 +280,14 @@ function Host() {
                                             <input class="form-check-input"
                                                 type="checkbox"
                                                 value=""
-                                                name="isAccessuble"
+                                                name="isAccessible"
                                                 id="flexCheckDefault"
-                                                {...register('isAccessuble')} />
+                                                {...register('isAccessible')} />
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 מקום נגיש
                                             </label>
                                             <small class="text-danger">
-                                                {errors?.isAccessuble && errors.isAccessuble}
+                                                {errors?.isAccessible && errors.isAccessible}
                                             </small>
                                         </div>
                                         <div class="form-check">
@@ -321,9 +319,6 @@ function Host() {
                                     </div>
                                     <br></br>
                                     <button className="btn btn-dark btn-lg btn-block">הרשמה</button>
-                                    {isSendSuccessfuly.current == true ? <h3>
-                                        הדירה נוספה בהצלחה. תודה רבה! תוכל לעדכן את הפרטים בכל עת.
-                                    </h3> : <></>}
                                 </form>
                                 <br></br>
                                 <br></br>

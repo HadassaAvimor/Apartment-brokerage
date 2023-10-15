@@ -35,7 +35,6 @@ function UpdateHost() {
     });
     const user = useSelector((state) => state.userReducer);
 
-    console.log(user);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
@@ -53,11 +52,7 @@ function UpdateHost() {
             await axios.put(hostUrl, data, config)
                 .then(response => {
                     if (response.status >= 200 && response.status < 300) {
-                        console.log(response.data);
-                        isSendSuccessfuly.current = true;
-                        navigate('/ExplanationModal')
-
-
+                        navigate('/explanationModal')
                     }
 
                 })
@@ -77,224 +72,227 @@ function UpdateHost() {
     }
     return (
         <>
-            <div class="wrap">
+            <div class="host-wrap" id="host-wrap">
                 <header>
                     <div style={{ height: "8vh" }}></div>
                 </header>
-
-                <div className="container" style={{ width: "50vw", marginTop: "9vh" }}>
-                    <form className="form" onSubmit={handleSubmit(onSubmit)} style={{ width: "40vw", marginLeft: "6vw", marginRight: "3vw", padding: "10vh" }}>
-                        <>
-                            <div style={{ "display": "flex" }}>
-
-                                <div class="form-group">
-                                    <input class="form-control"
-                                        type="text"
-                                        name="city"
-                                        {...register('city')}
-                                        defaultValue={user.city}
-                                        placeholder={user.city}
-                                    />
-                                    <label id="label">עיר</label>
-                                    <small class="text-danger">
-                                        {errors?.city && errors.city.message}
-                                    </small>
-
-                                    <input class="form-control" type="text" name="name" id="name" {...register('name')}
-                                        defaultValue={user.name}
-                                        placeholder={user.name} />
-                                    <label for="name" id="label">שם מלא</label>
-                                    <small class="text-danger">
-                                        {errors?.name && errors.name.message}
-                                    </small>
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-row">
-
-                                <div class="form-group">
-                                    <div class="radio-row">
-                                        <label for="accommodationUnit-true" >כן</label>
-                                        <input type="radio" id="accommodationUnit-true" value="true" name="accommodationUnit" {...register('accommodationUnit')} />
+                <h3 style={{ "letterSpacing": "1px", margin: "auto", marginBottom: "30px" }}>עדכון פרטי דירה</h3>
+                <div className="col">
+                    <div className="row g-0">
+                        <div className="col-xl-6" id="form-host">
+                            <div className="card-body p-md-5 text-black">
+                                <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                                    <div className="form-outline mb-4">
+                                        <label className="form-label" for="form3Example1m">איש קשר</label>
+                                        <input id="form3Example1m" className="form-control"
+                                            type="text"
+                                            name="name"
+                                            defaultValue={user.name}
+                                            {...register('name')}
+                                        />
+                                        <small className="text-danger">
+                                            {errors?.name && errors.name.message}
+                                        </small>
                                     </div>
-                                    <div class="radio-row">
-                                        <label for="accommodationUnit-false" >לא</label>
-                                        <input type="radio" id="accommodationUnit-false" value="false" name="accommodationUnit" {...register('accommodationUnit')} />
-                                    </div>
-                                    <label for="accommodationUnit" id="label">כניסה נפרדת</label>
-                                    <small class="text-danger">
-                                        {errors?.accommodationUnit && errors.accommodationUnit.message}
-                                    </small>
 
-                                    <div class="radio-row">
-                                        <label for="hasMMD-true">כן</label>
-                                        <input type="radio" id="hasMMD-true" value="true" name="hasMMD" {...register('hasMMD')} />
+                                    <div className="form-outline mb-4">
+                                        <label className="form-label" for="form3Example1m">פלאפון</label>
+                                        <input id="form3Example1m" className="form-control"
+                                            type="text"
+                                            name="phone"
+                                            defaultValue={user.phone}
+                                            {...register('phone')}
+                                        />
+                                        <small className="text-danger">
+                                            {errors?.phone && errors.phone.message}
+                                        </small>
+                                        <div class="form-check">
+                                            <input class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                name="whatsapp"
+                                                checked={user.whatsapp}
+                                                id="flexCheckDefault"
+                                                {...register('whatsapp')} />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                whatsapp
+                                            </label>
+                                            <small class="text-danger">
+                                                {errors?.whatsapp && errors.payment.whatsapp}
+                                            </small>
+                                        </div>
                                     </div>
-                                    <div class="radio-row">
-                                        <label for="hasMMD-false">לא</label>
-                                        <input type="radio" id="hasMMD-false" value="false" name="hasMMD" {...register('hasMMD')} />
-                                    </div>
-                                    <label class="form-label" for="hasMMD" id="label">מרחב מוגן</label>
-                                    <small class="text-danger">
-                                        {errors?.hasMMD && errors.hasMMD.message}
-                                    </small>
-                                </div>
-                            </div>
 
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <input class="form-control"
-                                        type="number"
-                                        name="numOfBeds"
-                                        min="0"
-                                        {...register('numOfBeds')}
-                                        defaultValue={user.numOfBeds}
-                                        placeholder={user.numOfBeds} />
-                                    <label>מספר מיטות</label>
-                                    <small class="text-danger">
-                                        {errors?.numOfBeds && errors.numOfBeds.message}
-                                    </small>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control"
-                                        type="number"
-                                        name="numOfMattresses"
-                                        min="0"
-                                        {...register('numOfMattresses')}
-                                        defaultValue={user.numOfMattresses}
-                                        placeholder={user.numOfMattresses} />
-                                    <label >מספר מזרנים</label>
-                                    <small class="text-danger">
-                                        {errors?.numOfMattresses && errors.numOfMattresses.message}
-                                    </small>
-                                </div>
-                                <div class="form-group">
-                                    <input id="form3Example1m" class="form-control"
-                                        type="number"
-                                        name="numOfCribs"
-                                        min="0"
-                                        {...register('numOfCribs')}
-                                        defaultValue={user.numOfCribs}
-                                        placeholder={user.numOfCribs} />
-                                    <label for="form3Example1m">מספר עריסות</label>
-                                    <small class="text-danger">
-                                        {errors?.numOfCribs && errors.numOfCribs.message}
-                                    </small>
-                                </div>
-                            </div>
-                            <div>
-                                {numOfBedsIsOK.current === false && <p style={{ color: "red" }}>יש להכניס מספר מיטות/מזרונים תקין</p>}
-                            </div>
 
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <div class="radio-row">
-                                        <label for="currentlyAvailable-true">כן</label>
-                                        <input type="radio" id="currentlyAvailable-true" value="true" name="currentlyAvailable" {...register('currentlyAvailable')} />
+                                    <div className="form-outline mb-4">
+                                        <label className="form-label" for="form3Example1m">עיר</label>
+                                        <input id="form3Example1m" className="form-control"
+                                            type="text"
+                                            name="city"
+                                            defaultValue={user.city}
+                                            {...register('city')}
+                                        />
+                                        <small className="text-danger">
+                                            {errors?.city && errors.city.message}
+                                        </small>
                                     </div>
-                                    <div class="radio-row">
-                                        <label for="currentlyAvailable-false">לא</label>
-                                        <input type="radio" id="currentlyAvailable-false" value="false" name="currentlyAvailable" {...register('currentlyAvailable')} />
+                                    <div className="form-outline mb-4">
+                                        <label className="form-label" for="form3Example1m">כתובת מייל</label>
+                                        <input id="form3Example1m" className="form-control"
+                                            type="email"
+                                            name="email"
+                                            pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+"
+                                            maxLength="255"
+                                            defaultValue={user.email}
+                                            {...register('email')}
+                                        />
+                                        <small className="text-danger">
+                                            {errors?.email && errors.email.message}
+                                        </small>
                                     </div>
-                                    <label class="form-label" for="currentlyAvailable" id="label"> זמין כרגע</label>
-                                    <small class="text-danger">
-                                        {errors?.currentlyAvailable && errors.currentlyAvailable.message}
-                                    </small>
-                                </div>
-                                <div class="form-group">
-                                    <div class="radio-row">
-                                        <label for="isAccessible-true">כן</label>
-                                        <input type="radio" id="isAccessible-true" value="true" name="isAccessible" {...register('isAccessible')} />
-                                    </div>
-                                    <div class="radio-row">
-                                        <label for="isAccessible-false">לא</label>
-                                        <input type="radio" id="isAccessible-false" value="false" name="isAccessible" {...register('isAccessible')} />
-                                    </div>
-                                    <label class="form-label" for="isAccessuble" id="label">מקום נגיש</label>
-                                    <small class="text-danger">
-                                        {errors?.isAccessible && errors.isAccessible.message}
-                                    </small>
-                                </div>
-                                <div class="form-group">
-                                    <div class="radio-row">
-                                        <label for="payment-true">כן</label>
-                                        <input type="radio" id="payment-true" value="true" name="payment" {...register('payment')} />
-                                    </div>
-                                    <div class="radio-row">
-                                        <label for="payment-false">לא</label>
-                                        <input type="radio" id="payment-false" value="false" name="payment" {...register('payment')} />
-                                    </div>
-                                    <label class="form-label" for="payment" id="label">בתשלום</label>
-                                    <small class="text-danger">
-                                        {errors?.payment && errors.payment.message}
-                                    </small>
-                                </div>
-                            </div>
 
-                            <div class="form-row">
-                                <div class="form-group">
-
-                                    <div class="radio-row">
-                                        <label for="whatsapp-true">כן</label>
-                                        <input type="radio" id="whatsapp-true" value="true" name="whatsapp" {...register('whatsapp')} />
+                                    <div className="row">
+                                        <div className="col-md-4 mb-4">
+                                            <label className="form-label" for="numOfBeds">מספר מיטות</label>
+                                            <input id="numOfBeds" className="form-control"
+                                                type="number"
+                                                name="numOfBeds"
+                                                defaultValue={user.numOfBeds}
+                                                {...register('numOfBeds')}
+                                            />
+                                            <small className="text-danger">
+                                                {errors.numOfBeds && errors.numOfBeds.message}
+                                            </small>
+                                        </div>
+                                        <div className="col-md-4 mb-4">
+                                            <label className="form-label" for="form3Example1m">מספר מזרנים</label>
+                                            <input id="form3Example1m" className="form-control"
+                                                type="number"
+                                                name="numOfMattresses"
+                                                defaultValue={user.numOfMattresses}
+                                                {...register('numOfMattresses')}
+                                            />
+                                            <small className="text-danger">
+                                                {errors.numOfMattresses && errors.numOfMattresses.message}
+                                            </small>
+                                        </div>
+                                        <div className="col-md-4 mb-4">
+                                            <label className="form-label" for="form3Example1m">מספר עריסות</label>
+                                            <input dir="rtl" id="form3Example1m" className="form-control"
+                                                type="number"
+                                                name="numOfCribs"
+                                                defaultValue={user.numOfCribs}
+                                                {...register('numOfCribs')}
+                                            />
+                                            <small className="text-danger">
+                                                {errors.numOfCribs && errors.numOfCribs.message}
+                                            </small>
+                                        </div>
+                                        <div>
+                                            {numOfBedsIsOK.current == false && <p style={{ color: "red" }}>יש להכניס מספר מיטות/מזרונים תקין</p>}
+                                        </div>
                                     </div>
-                                    <div class="radio-row">
-                                        <label for="whatsapp-false">לא</label>
-                                        <input type="radio" id="whatsapp-false" value="false" name="whatsapp" {...register('whatsapp')} />
+                                    <div className="row" id="checkboxes">
+                                        <div class="form-check">
+                                            <input class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                name="accommodationUnit"
+                                                id="flexCheckDefault"
+                                                checked={user.accommodationUnit}
+                                                {...register('accommodationUnit')} />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                כניסה נפרדת
+                                            </label>
+                                            <small class="text-danger">
+                                                {errors?.accommodationUnit && errors.accommodationUnit}
+                                            </small>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                name="hasMMD"
+                                                id="flexCheckDefault"
+                                                checked={user.hasMMD}
+                                                {...register('hasMMD')} />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                יש ממ"ד
+                                            </label>
+                                            <small class="text-danger">
+                                                {errors?.hasMMD && errors.hasMMD}
+                                            </small>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                name="currentlyAvailable"
+                                                id="flexCheckDefault"
+                                                checked={user.currentlyAvailable}
+                                                {...register('currentlyAvailable')} />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                זמין כרגע
+                                            </label>
+                                            <small class="text-danger">
+                                                {errors?.currentlyAvailable && errors.currentlyAvailable}
+                                            </small>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                name="isAccessible"
+                                                id="flexCheckDefault"
+                                                checked={user.isAccessible}
+                                                {...register('isAccessible')} />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                מקום נגיש
+                                            </label>
+                                            <small class="text-danger">
+                                                {errors?.isAccessible && errors.isAccessible}
+                                            </small>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                name="payment"
+                                                id="flexCheckDefault"
+                                                checked={user.payment}
+                                                {...register('payment')} />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                בתשלום
+                                            </label>
+                                            <small class="text-danger">
+                                                {errors?.payment && errors.payment}
+                                            </small>
+                                        </div>
                                     </div>
-                                    <label class="form-label" for="whatsapp" id="label">יש ווצאפ</label>
                                     <br></br>
-
-                                    <small class="text-danger">
-                                        {errors?.whatsapp && errors.payment.whatsapp}
-                                    </small>
-                                    <input
-                                        id="form3Example1m"
-                                        class="form-control"
-                                        type="text"
-                                        name="phone"
-                                        maxLength="10"
-                                        {...register('phone')}
-                                        defaultValue={user.phone}
-                                        placeholder={user.phone}
-                                    />
-                                    <label for="form3Example1m" id="label">מספר טלפון</label>
-                                    <small class="text-danger">
-                                        {errors?.phone && errors.phone.message}
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="form-row">
-
-
-                                <div class="form-group">
-                                    <textarea
-                                        id="form3Example1m"
-                                        class="form-control"
-                                        name="notes"
-                                        {...register('notes')}
-                                        defaultValue={user.notes}
-                                        placeholder={user.notes} />
-                                    <label for="form3Example1m">הערות</label>
-                                    <small class="text-danger">
-                                        {errors?.isAccessible && errors.isAccessible.message}
-                                    </small>
-                                </div>
+                                    <div className="row">
+                                        <div class="form-group">
+                                            <label for="form3Example1m">הערות</label>
+                                            <textarea
+                                                id="form3Example1m"
+                                                class="form-control"
+                                                name="notes"
+                                                defaultValue={user.notes}
+                                                {...register('notes')} />
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <button className="btn btn-dark btn-lg btn-block">עדכון</button>
+                                </form>
+                                <br></br>
+                                <br></br>
 
                             </div>
-
-                        </>
-                        <input class="btn btn-outline-dark" type="submit"></input>
-                        {isSendSuccessfuly.current === true ? <h3>
-                            פרטי הדירה עודכנו בהצלחה!
-                        </h3> : <></>}
-                    </form>
+                        </div>
+                    </div>
+                    <br></br>
                 </div>
             </div >
-
-
         </>);
 }
 export default UpdateHost;

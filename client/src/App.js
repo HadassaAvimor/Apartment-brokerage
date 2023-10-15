@@ -26,7 +26,7 @@ function App() {
               <Route path="/host" element={<Host />} />
               <Route path="/guest" element={<Guest />} />
               <Route path="/updateHost" element={<UpdateHost />} />
-              <Route path="/ExplanationModal" element={<ExplanationModal />} />
+              <Route path="/explanationModal" element={<ExplanationModal />} />
               <Route path="/error" element={<ErrorModal />} />
             </Routes>
           </Router>

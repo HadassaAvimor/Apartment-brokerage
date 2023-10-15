@@ -47,7 +47,6 @@ function Login() {
 
 
     const onSubmitHandler = (data) => {
-        console.log("data", data);
         axios.post(`${baseUrl}/auth/login`, data, {
             headers: {
                 'Content-Type': 'application/json'
@@ -58,7 +57,6 @@ function Login() {
                     if (response.data != "") {
                         try {
                             dispatch(userLogin(response.data.user));
-                            console.log(response.data.token);
                             setTokens(response.data.token);
                             navigate('/updateHost');
                         }
