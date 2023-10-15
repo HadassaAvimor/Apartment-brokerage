@@ -51,9 +51,11 @@ function Host() {
         }
         else {
             numOfBedsIsOK.current = true;
+            setDisabledBtn(true);
             await axios.post(hostUrl, data)
                 .then(response => {
                     if (response.status >= 200 && response.status < 300) {
+                        setDisabledBtn(true);
                         navigate('/explanationModal')
 
                     }
@@ -77,6 +79,8 @@ function Host() {
 
     const [passwordType, setPasswordType] = useState("password");
     const [passwordInput, setPasswordInput] = useState("");
+    const [disabledBtn, setDisabledBtn] = useState(false);
+
     const handlePasswordChange = (evnt) => {
         setPasswordInput(evnt.target.value);
     }
@@ -318,7 +322,7 @@ function Host() {
                                         </div>
                                     </div>
                                     <br></br>
-                                    <button className="btn btn-dark btn-lg btn-block">הרשמה</button>
+                                    <button disabled={disabledBtn} className="btn btn-dark btn-lg btn-block">הרשמה</button>
                                 </form>
                                 <br></br>
                                 <br></br>
