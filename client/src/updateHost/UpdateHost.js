@@ -111,7 +111,7 @@ function UpdateHost() {
                                                 type="checkbox"
                                                 value=""
                                                 name="whatsapp"
-                                                checked={user.whatsapp}
+                                                defaultChecked={user.whatsapp}
                                                 id="flexCheckDefault"
                                                 {...register('whatsapp')} />
                                             <label class="form-check-label" for="flexCheckDefault">
@@ -199,7 +199,7 @@ function UpdateHost() {
                                                 value=""
                                                 name="accommodationUnit"
                                                 id="flexCheckDefault"
-                                                checked={user.accommodationUnit}
+                                                defaultChecked={user.accommodationUnit}
                                                 {...register('accommodationUnit')} />
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 כניסה נפרדת
@@ -214,7 +214,7 @@ function UpdateHost() {
                                                 value=""
                                                 name="hasMMD"
                                                 id="flexCheckDefault"
-                                                checked={user.hasMMD}
+                                                defaultChecked={user.hasMMD}
                                                 {...register('hasMMD')} />
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 יש ממ"ד
@@ -229,7 +229,7 @@ function UpdateHost() {
                                                 value=""
                                                 name="currentlyAvailable"
                                                 id="flexCheckDefault"
-                                                checked={user.currentlyAvailable}
+                                                defaultChecked={user.currentlyAvailable}
                                                 {...register('currentlyAvailable')} />
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 זמין כרגע
@@ -244,7 +244,7 @@ function UpdateHost() {
                                                 value=""
                                                 name="isAccessible"
                                                 id="flexCheckDefault"
-                                                checked={user.isAccessible}
+                                                defaultChecked={user.isAccessible}
                                                 {...register('isAccessible')} />
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 מקום נגיש
@@ -259,7 +259,7 @@ function UpdateHost() {
                                                 value=""
                                                 name="payment"
                                                 id="flexCheckDefault"
-                                                checked={user.payment}
+                                                defaultChecked={user.payment}
                                                 {...register('payment')} />
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 בתשלום
