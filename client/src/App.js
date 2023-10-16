@@ -25,18 +25,18 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/host" element={<Host />} />
-              <Route path='/about' element={<About/>}/>
               <Route path="/guest" element={<Guest />} />
               <Route path="/updateHost" element={<UpdateHost />} />
               <Route path="/explanationModal" element={<ExplanationModal />} />
               <Route path="/error" element={<ErrorModal />} />
-              <Route path='/about' element={<About/>}/>
+              <Route path='/about' element={<About />} />
             </Routes>
+            <footer>
+              <Footer />
+            </footer>
           </Router>
         </Provider>
-        <footer>
-          <Footer />
-        </footer>
+
       </div>
     </>
   );

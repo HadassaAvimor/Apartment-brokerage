@@ -1,5 +1,11 @@
 .about{
     text-align: center;
-    height: 69vh;
-    width: 150vh;
+    padding-bottom:15vh;
+}
+
+#linkToHomePage{
+    cursor: pointer;
+    color: black;
+    background-color: #FFC107;
+    margin: 2vh;
 }
