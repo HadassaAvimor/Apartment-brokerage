@@ -20,18 +20,20 @@ function UpdateHost() {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const schema = yup.object().shape({
         id: yup.string(),
-        name: yup.string().required("נא להכניס ערך"),
+        name: yup.string().required("נא להכניס ערך").test('no-empty-string', 'שדה לא יכול להיות מחרוזת ריקה', function(value) {
+            return value.trim() !== ''; // Ensure the trimmed value is not an empty string
+          }),
         city: yup.string().required("נא להכניס ערך"),
         accommodationUnit: yup.bool().required("נא לסמן"),
         hasMMD: yup.bool().required("נא לסמן אם קיים מרחב מוגן"),
-        numOfBeds: yup.number().required("נא להכניס כמה מיטות יש לכם"),
-        numOfMattresses: yup.number().required("נא להכניס כמה מזרונים יש(ניתן להכניס 0)"),
-        numOfCribs: yup.number()/*.required("נא להכניס ערך(ניתן להכניס 0)")*/,
+        numOfBeds: yup.number().min(0, "ערך לא תקין").required("נא להכניס כמה מיטות יש לכם"),
+        numOfMattresses: yup.number().min(0, "ערך לא תקין").required("נא להכניס כמה מזרונים יש(ניתן להכניס 0)"),
+        numOfCribs: yup.number().min(0, "ערך לא תקין")/*.required("נא להכניס ערך(ניתן להכניס 0)")*/,
         currentlyAvailable: yup.bool().required("נא לסמן"),
         isAccessible: yup.bool(),
         payment: yup.bool().required("נא לסמן"),
         notes: yup.string(),
-        phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+        phone: yup.string().matches(phoneRegExp, 'נא להכניב מספר פלאפון תקין'),
         whatsapp: yup.bool().required("נא לסמן"),
     });
     const user = useSelector((state) => state.userReducer);
@@ -162,6 +164,7 @@ function UpdateHost() {
                                             <label className="form-label" for="numOfBeds">מספר מיטות</label>
                                             <input id="numOfBeds" className="form-control"
                                                 type="number"
+                                                min="0"
                                                 name="numOfBeds"
                                                 defaultValue={user.numOfBeds}
                                                 {...register('numOfBeds')}
@@ -174,6 +177,7 @@ function UpdateHost() {
                                             <label className="form-label" for="form3Example1m">מספר מזרנים</label>
                                             <input id="form3Example1m" className="form-control"
                                                 type="number"
+                                                min="0"
                                                 name="numOfMattresses"
                                                 defaultValue={user.numOfMattresses}
                                                 {...register('numOfMattresses')}
@@ -187,6 +191,7 @@ function UpdateHost() {
                                             <input dir="rtl" id="form3Example1m" className="form-control"
                                                 type="number"
                                                 name="numOfCribs"
+                                                min="0"
                                                 defaultValue={user.numOfCribs}
                                                 {...register('numOfCribs')}
                                             />
@@ -283,6 +288,7 @@ function UpdateHost() {
                                                 id="form3Example1m"
                                                 class="form-control"
                                                 name="notes"
+                                                maxLength={100}
                                                 defaultValue={user.notes}
                                                 {...register('notes')} />
                                         </div>

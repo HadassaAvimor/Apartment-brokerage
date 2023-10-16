@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import '../style/guest.css';
 import axios from 'axios';
 import { Button, Collapse } from 'react-bootstrap';
-import LazyLoad from 'react-lazy-load';
 
 function Guest() {
     const baseUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const [visibleApartments, setVisibleApartments] = useState(10);
+
     const handleScroll = () => {
         if (
             window.innerHeight + window.scrollY >= document.body.scrollHeight - 200
@@ -32,12 +32,14 @@ function Guest() {
         accessible: false, // Set default value to false
         people: ''
     });
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
     async function getAppartments() {
         await axios.get(`${baseUrl}/hosts`)
             .then((response) => {
@@ -49,7 +51,6 @@ function Guest() {
                 }
                 else if (error.response.status >= 400 && error.response.status < 500) {
                     navigate("/error", { state: { error: "שגיאת לקוח. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } });
-
                 }
                 else {
                     navigate("/error", { state: { error: "שגיאת שרת. נסה שוב מאוחר יותר, באם התקלה ממשיכה אנא צור קשר" } });
@@ -78,19 +79,12 @@ function Guest() {
     };
     const filterApartments = () => {
         const filteredApartments = apartments.filter((apartment) => {
-            if (!apartment.currentlyAvailable) {
-                return false;
-            }
             // Check if the apartment's city matches the selected city filter
             if (filters.city != apartment.city && filters.city != '') {
                 return apartment.city.includes(filters.city) || apartment.city.startsWith(filters.city);
             }
             // Check if the apartment's accommodationUnit matches the selected filter
             if (filters.accommodationUnit && !apartment.accommodationUnit) {
-                return false;
-            }
-            // Check if the apartment's currentlyAvailable matches the selected filter
-            if (filters.available && !apartment.currentlyAvailable) {
                 return false;
             }
             // Check if the apartment's hasMMD matches the selected filter

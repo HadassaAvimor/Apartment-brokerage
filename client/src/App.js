@@ -18,9 +18,9 @@ function App() {
   return (
     <>
       <div className='app'>
-        <Header></Header>
         <Provider store={store}>
           <Router>
+          <Header></Header>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
@@ -31,7 +31,7 @@ function App() {
               <Route path="/error" element={<ErrorModal />} />
               <Route path='/about' element={<About />} />
             </Routes>
-            <footer>
+            <footer className='footer-app'>
               <Footer />
             </footer>
           </Router>

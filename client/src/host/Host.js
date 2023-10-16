@@ -10,9 +10,6 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ExplanationModal } from "./ExplanationModal";
 
-
-
-
 function Host() {
     const numOfBedsIsOK = useRef(true);
     const baseUrl = process.env.REACT_APP_API_URL;
@@ -23,7 +20,9 @@ function Host() {
 
     const schema = yup.object().shape({
         id: yup.string(),
-        name: yup.string().required("נא להכניס ערך"),
+        name: yup.string().required("נא להכניס ערך").test('no-empty-string', 'שדה לא יכול להיות מחרוזת ריקה', function(value) {
+            return value.trim() !== ''; // Ensure the trimmed value is not an empty string
+          }),
         city: yup.string().required("נא להכניס ערך"),
         accommodationUnit: yup.bool().required("נא לסמן"),
         hasMMD: yup.bool().required("נא לסמן אם קיים מרחב מוגן"),
@@ -202,6 +201,7 @@ function Host() {
                                             <input id="numOfBeds" className="form-control"
                                                 type="number"
                                                 name="numOfBeds"
+                                                min="0"
                                                 defaultValue={0}
                                                 {...register('numOfBeds')}
                                             />
@@ -213,6 +213,7 @@ function Host() {
                                             <label className="form-label" for="form3Example1m">מספר מזרנים</label>
                                             <input id="form3Example1m" className="form-control"
                                                 type="number"
+                                                min="0"
                                                 name="numOfMattresses"
                                                 defaultValue={0}
                                                 {...register('numOfMattresses')}
@@ -226,6 +227,7 @@ function Host() {
                                             <input dir="rtl" id="form3Example1m" className="form-control"
                                                 type="number"
                                                 name="numOfCribs"
+                                                min="0"
                                                 defaultValue={0}
                                                 {...register('numOfCribs')}
                                             />
@@ -317,6 +319,7 @@ function Host() {
                                                 id="form3Example1m"
                                                 class="form-control"
                                                 name="notes"
+                                                maxLength={100}
                                                 defaultValue={" "}
                                                 {...register('notes')} />
                                         </div>
