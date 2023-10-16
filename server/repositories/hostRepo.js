@@ -9,7 +9,7 @@ module.exports = class HostRepo {
     }
 
     async getAll() {
-        let items = await HostModel.find({}, { password: 0 });
+        let items = await HostModel.find({currentlyAvailable: true}, { password: 0 });
         return items;
     }
 

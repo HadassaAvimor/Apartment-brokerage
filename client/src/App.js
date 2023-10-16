@@ -12,14 +12,15 @@ import Footer from './Footer'
 import "./style/app.css";
 import { ExplanationModal } from './host/ExplanationModal';
 import { ErrorModal } from './errorModel/ErrorModal';
+import About from './About/About';
 
 function App() {
   return (
     <>
       <div className='app'>
-        <Header></Header>
         <Provider store={store}>
           <Router>
+          <Header></Header>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
@@ -28,12 +29,14 @@ function App() {
               <Route path="/updateHost" element={<UpdateHost />} />
               <Route path="/explanationModal" element={<ExplanationModal />} />
               <Route path="/error" element={<ErrorModal />} />
+              <Route path='/about' element={<About />} />
             </Routes>
+            <footer className='footer-app'>
+              <Footer />
+            </footer>
           </Router>
         </Provider>
-        <footer>
-          <Footer />
-        </footer>
+
       </div>
     </>
   );

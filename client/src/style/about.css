@@ -1,0 +1,13 @@
+.about{
+    text-align: center;
+    padding-bottom:25vh;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+#linkToHomePage{
+    cursor: pointer;
+    color: black;
+    background-color: #FFC107;
+    margin: 2vh;
+}
