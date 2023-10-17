@@ -20,6 +20,7 @@ function About() {
                 <p>
                     apartmentbrokerage22@gmail.com ניתן לפנות אלינו בכל עת במייל
                 </p>
+                <p>.מקוות שהועלנו לעם ישראל:) צוות פיתוח- פסי מרגלית, מרים יומטוביאן, חוי דייטש, חוה שץ, בת שבע ימין והדסה אבימור</p>
                 <Button variant="Light" id="linkToHomePage"
                     onClick={() =>  navigate('/')} >
                     חזרה לדף הבית
