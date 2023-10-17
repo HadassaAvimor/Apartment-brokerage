@@ -2,7 +2,6 @@
   background-color: rgba(0, 0, 0);
   color: white;
   width: 100%;
-  position: sticky;
   bottom: 0;
 }
 
@@ -19,9 +18,7 @@
 @media (min-width: 768px) {
   .footer {
     background-color: rgba(0, 0, 0);
-    position: static;
     padding: 20px;
     bottom: 0;
   }
-  
 }
