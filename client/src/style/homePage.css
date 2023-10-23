@@ -11,7 +11,7 @@
 @media (max-width: 768px) {
     .cards {
         /* Override the display property for mobile screens */
-        display: block;
+        flex-direction: column;
         /* Add any other mobile-specific styles here */
     }
 }
