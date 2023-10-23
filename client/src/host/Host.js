@@ -104,6 +104,7 @@ function Host() {
                         <div className="col-xl-6" id="form-host">
                             <div className="card-body p-md-5 text-black">
                                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                                    <p style={{color: "brown"}}>בכל עת תוכלו לעדכן את דירתכם ל"לא זמינה כרגע" על מנת שלא תוצג באתר ע"י כניסה לחשבון עם כתובת המייל והסיסמה שתבחרו</p>
                                     <div className="form-outline mb-4">
                                         <label className="form-label" for="form3Example1m">איש קשר</label>
                                         <input id="form3Example1m" className="form-control"

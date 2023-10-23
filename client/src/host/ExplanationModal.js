@@ -27,9 +27,10 @@ export function ExplanationModal() {
         <>
             <Modal id="modal" show={show} onHide={() => setShow(false)} style={{ margin: "2vw" }}>
                 <h4 className="text-modal">!הדירה נוספה בהצלחה</h4>
-                <h5 className="text-modal">ניתן לעדכן את פרטי הדירה בכל עת ע"י כניסה לאתר עם שם המשתמש והסיסמה שלך</h5>
+                <h4 style={{fontWeight: "bold"}}>שימו לב</h4>
+                <h5 className="text-modal"><h5 style={{color: "red", fontWeight: "bold"}}>ניתן לעדכן את פרטי הדירה בכל עת</h5> ע"י כניסה לאתר עם שם המשתמש והסיסמה שלך</h5>
                     {/* <br></br> */}
-                    <h5 className="text-modal">באם הדירה לא רלוונטית כרגע אנא הפוך אותה ללא זמינה, על מנת שלא תוצג</h5>
+                    <h5 style={{color: "red", fontWeight: "bold"}} className="text-modal">באם הדירה לא רלוונטית כרגע אנא הפוך אותה ללא זמינה, על מנת שלא תוצג</h5>
                     {/* <br></br> */}
                     <h5 className="text-modal">אירחת אנשים דרך האתר שלנו? נשמח מאוד לדעת על כך </h5>
                     <br></br>
